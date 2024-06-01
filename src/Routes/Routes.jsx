@@ -5,6 +5,8 @@ import MainLayouts from "../Layouts/MainLayouts";
 import Home from "../components/Home/Home/Home";
 import Register from "../pages/Authentication/Register";
 import Login from "../pages/Authentication/Login";
+import AddArticles from "../pages/AddArticles/AddArticles";
+import PrivateRoutes from "./PrivateRoutes";
 
 
   const router = createBrowserRouter([
@@ -24,6 +26,10 @@ import Login from "../pages/Authentication/Login";
         {
           path:'/login',
           element: <Login></Login>
+        },
+        {
+          path:'/addArticles',
+          element:<PrivateRoutes><AddArticles></AddArticles></PrivateRoutes>
         }
       ]
     },
