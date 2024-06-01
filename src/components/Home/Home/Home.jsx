@@ -9,13 +9,13 @@ import Trending from "../Trending/Trending";
 
 const Home = () => {
     return (
-        <div>
+        <div className="container mx-auto">
             <Toaster
                 position="top-center"
                 reverseOrder={false}
             />
-            <div className="container mx-auto">
-                <Navbar></Navbar>
+            <div>
+                
                 <Trending></Trending>
                 <AllPublishers></AllPublishers>
                 <Statistic></Statistic>

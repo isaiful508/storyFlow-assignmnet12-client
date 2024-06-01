@@ -1,16 +1,35 @@
-/* oswald googl font */
+/* noto-serif-jp google font */
 
-@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200..900&display=swap');
 
 
 
-.oswald-500 {
-  font-family: "Oswald", sans-serif;
+
+
+.noto-500 {
+  font-family: "Noto Serif JP", serif;
   font-optical-sizing: auto;
   font-weight: 500;
   font-style: normal;
 }
-
+.noto-600 {
+  font-family: "Noto Serif JP", serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+}
+.noto-700 {
+  font-family: "Noto Serif JP", serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+}
+.noto-800 {
+  font-family: "Noto Serif JP", serif;
+  font-optical-sizing: auto;
+  font-weight: 800;
+  font-style: normal;
+}
 
 /* tailwind config */
 @tailwind base;

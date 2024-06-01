@@ -31,7 +31,7 @@ const SocialLogin = () => {
             onClick={handleGoogleLogin}
                 aria-label="Login with Google"
                 type="button"
-                className="flex items-center justify-center w-full p-4 space-x-4 border rounded-md focus:ring-2 focus:ring-offset-1 dark:border-gray-600 focus:dark:ring-violet-600"
+                className="flex items-center justify-center w-full p-4 space-x-4 border rounded-md focus:ring-2 focus:ring-offset-1 dark:border-gray-600"
             >
                 <svg
                     xmlns="http://www.w3.org/2000/svg"

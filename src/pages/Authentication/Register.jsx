@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from './../../providers/AuthProvider';
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import toast from "react-hot-toast";
 import { imageUpload } from "../../utils";
 import SocialLogin from "./SocialLogin";
@@ -10,6 +10,9 @@ import SocialLogin from "./SocialLogin";
 
 const Register = () => {
     const { createUser, logOut, loading, setLoading, updateUserProfile } = useContext(AuthContext);
+    const [passwordError, setPasswordError] = useState("");
+
+
     const navigate = useNavigate();
 
 
@@ -24,6 +27,31 @@ const Register = () => {
         const password = form.password.value;
         const image = form.image.files[0];
 
+
+        setPasswordError("")
+
+    
+    if (password.length < 6) {
+      setPasswordError("Password must be at least 6 characters long.");
+      return;
+    }
+
+
+    if (!/[A-Z]/.test(password)) {
+      setPasswordError("Password must be at least one uppercase letter.");
+      return;
+    }
+
+
+    if (!/[a-z]/.test(password)) {
+      setPasswordError("Password must be at least one lowercase letter.");
+      return;
+    }
+
+    if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
+        setPasswordError("Password must contain at least one special character.");
+        return;
+      }
 
 
         try {
@@ -122,7 +150,10 @@ const Register = () => {
                                 />
 
                             </div>
-                            <input className="btn text-white hover:bg-blue-500 w-full bg-blue-600" type="submit" value="Register" />
+                            {
+                    passwordError && <p className="text-red-700 font-semibold">{passwordError}</p>
+                }
+                            <input className="btn  text-white hover:bg-[#5f59f7] w-full bg-[#343090]" type="submit" value="Register" />
 
 
                             <p className="mb-4 text-center">Already Have an account ?
