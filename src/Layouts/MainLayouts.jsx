@@ -1,12 +1,17 @@
+import { Toaster } from "react-hot-toast";
 import { Outlet } from "react-router-dom";
-import Home from "../components/Home/Home/Home";
+
 
 
 const MainLayouts = () => {
     return (
         <div>
-            <Home></Home>
+            <Toaster
+  position="top-center"
+  reverseOrder={false}
+/>
             <Outlet></Outlet>
+            
         </div>
     );
 };
