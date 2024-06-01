@@ -13,7 +13,7 @@ const Navbar = () => {
         <> 
             <NavLink to='/'>Home</NavLink>
             {
-                user && <><NavLink to='/addArticles' className={({ isActive }) => isActive ? 'text-[#3665b8] poppins-medium rounded-lg border-2 p-2 border-[#3665b8] noto-600' : 'noto-500'}>Add Articles</NavLink>
+                user && <><NavLink to='/addArticles' className={({ isActive }) => isActive ? 'text-[#3665b8] poppins-medium rounded-lg border-2 p-2 border-[#3665b8] ' : ''}>Add Articles</NavLink>
 
                 <NavLink to='/allArticles'  className={({ isActive }) => isActive ? 'text-[#3665b8] poppins-medium rounded-lg border-2 p-2 border-[#3665b8] font-600' : 'font-500'}>All Articles</NavLink>
 
@@ -56,7 +56,7 @@ const Navbar = () => {
                 <a className="btn btn-ghost text-xl">Story Flow</a>
             </div>
             <div className="navbar-center hidden lg:flex">
-                <ul className="menu menu-horizontal  px-1 space-x-2">
+                <ul className="menu menu-horizontal flex items-center justify-between noto-700 px-1 space-x-3">
                    
                    {
                     navOptions

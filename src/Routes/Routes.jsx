@@ -7,6 +7,7 @@ import Register from "../pages/Authentication/Register";
 import Login from "../pages/Authentication/Login";
 import AddArticles from "../pages/AddArticles/AddArticles";
 import PrivateRoutes from "./PrivateRoutes";
+import DashboardLayouts from "../Layouts/DashboardLayouts";
 
 
   const router = createBrowserRouter([
@@ -33,5 +34,12 @@ import PrivateRoutes from "./PrivateRoutes";
         }
       ]
     },
+    {
+      path:'/dashboard',
+      element: <DashboardLayouts></DashboardLayouts>,
+      children: [
+        
+      ]
+    }
   ]);
   export default router;
