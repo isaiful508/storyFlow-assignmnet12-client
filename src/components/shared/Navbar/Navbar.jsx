@@ -2,11 +2,13 @@ import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import useAuth from './../../../Hooks/useAuth';
 import { AiOutlineMenu } from "react-icons/ai";
+import UseAdmin from "../../../Hooks/UseAdmin";
 
 
 
 const Navbar = () => {
     const { user, logOut } = useAuth();
+    const [isAdmin] = UseAdmin();
     const [isOpen, setIsOpen] = useState(false)
 
     const navOptions =
@@ -19,12 +21,15 @@ const Navbar = () => {
 
                 <NavLink to='/subscription'  className={({ isActive }) => isActive ? 'text-[#3665b8] poppins-medium rounded-lg border-2 p-2 border-[#3665b8] font-600' : 'font-500'}>Subscription</NavLink>
 
-                <NavLink to='/dashboard'  className={({ isActive }) => isActive ? 'text-[#3665b8] poppins-medium rounded-lg border-2 p-2 border-[#3665b8] font-600' : 'font-500'}>Dashboard</NavLink>
+                {
+              user && isAdmin && <NavLink to='/dashboard'  className={({ isActive }) => isActive ? 'text-[#3665b8] poppins-medium rounded-lg border-2 p-2 border-[#3665b8] font-600' : 'font-500'}>Dashboard</NavLink>
+            }    
 
                 <NavLink to='/myArticles'  className={({ isActive }) => isActive ? 'text-[#3665b8] poppins-medium rounded-lg border-2 p-2 border-[#3665b8] font-600' : 'font-500'}>My Articles</NavLink>
 
                 <NavLink to='/premiumArticles'  className={({ isActive }) => isActive ? 'text-[#3665b8] poppins-medium rounded-lg border-2 p-2 border-[#3665b8] font-600' : 'font-500'}>Premium Articles</NavLink></> 
             }
+            
 
             {/* {
             user && isAdmin &&<NavLink to="/dashboard/adminHome">DASHBOARD</NavLink>

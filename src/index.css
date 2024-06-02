@@ -1,6 +1,7 @@
 /* noto-serif-jp google font */
 
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@200..900&display=swap');
+/* inter font */
 
 
 
@@ -30,6 +31,9 @@
   font-weight: 800;
   font-style: normal;
 }
+
+/* inter font */
+
 
 /* tailwind config */
 @tailwind base;

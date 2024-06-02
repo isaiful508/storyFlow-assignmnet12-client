@@ -15,13 +15,13 @@ const AllUsers = () => {
             return res.data;
         }
     })
-    console.log(users);
+    // console.log(users);
 
     //make admin a user
     const handleMakeAdmin = user => {
         axiosPublic.patch(`/users/admin/${user._id}`)
             .then((res) => {
-                console.log(res.data);
+                // console.log(res.data);
                 if (res.data.modifiedCount > 0) {
                     refetch()
                     toast.success(`${user.name} is now admin`)
@@ -45,7 +45,7 @@ const AllUsers = () => {
 
                 <table className="table">
                     {/* head */}
-                    <thead className="inter-600 bg-[#5f59f7] text-white">
+                    <thead className="noto-600 bg-[#5f59f7] text-white">
                         <tr>
                             <th>No.</th>
                             <th>NAME</th>
@@ -56,7 +56,7 @@ const AllUsers = () => {
 
                     </thead>
 
-                    <tbody className="inter-400">
+                    <tbody className="noto-500">
 
                         {
                             users.map((user, idx) => <tr
@@ -83,7 +83,7 @@ const AllUsers = () => {
                                 </td>
 
                                 <th>
-                                    <button onClick="" className="btn btn-ghost btn-xs"> <MdDelete className="text-xl text-red-600" /></button>
+                                    <button className="btn btn-ghost btn-xs"> <MdDelete className="text-xl text-red-600" /></button>
                                 </th>
 
                             </tr>)

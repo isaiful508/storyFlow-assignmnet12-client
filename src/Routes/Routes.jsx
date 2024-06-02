@@ -11,6 +11,7 @@ import DashboardLayouts from "../Layouts/DashboardLayouts";
 import AllUsers from "../pages/Dashboard/AllUsers/AllUsers";
 import AllArticles from "../pages/Dashboard/AllArticles/AllArticles";
 import AddPublisher from "../pages/Dashboard/AddPublisher/AddPublisher";
+import AdminRoutes from "./AdminRoutes";
 
 
   const router = createBrowserRouter([
@@ -39,7 +40,7 @@ import AddPublisher from "../pages/Dashboard/AddPublisher/AddPublisher";
     },
     {
       path:'/dashboard',
-      element: <DashboardLayouts></DashboardLayouts>,
+      element: <AdminRoutes><DashboardLayouts></DashboardLayouts></AdminRoutes>,
       children: [
         {
           path: 'all-users',
