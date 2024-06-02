@@ -1,10 +1,15 @@
 import { Outlet } from "react-router-dom";
 import Sidebar from "../pages/Dashboard/Sidebar/Sidebar";
+import { Toaster } from "react-hot-toast";
 
 
 const DashboardLayouts = () => {
     return (
         <div className='relative min-h-screen md:flex'>
+           <Toaster
+                position="top-center"
+                reverseOrder={false}
+            /> 
         {/* Sidebar */}
         <Sidebar />
   
