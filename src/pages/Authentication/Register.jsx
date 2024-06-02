@@ -4,6 +4,7 @@ import { useContext, useState } from "react";
 import toast from "react-hot-toast";
 import { imageUpload } from "../../utils";
 import SocialLogin from "./SocialLogin";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 
 
@@ -11,6 +12,7 @@ import SocialLogin from "./SocialLogin";
 const Register = () => {
     const { createUser, logOut, loading, setLoading, updateUserProfile } = useContext(AuthContext);
     const [passwordError, setPasswordError] = useState("");
+    const axiosPublic = useAxiosPublic();
 
 
     const navigate = useNavigate();
@@ -66,6 +68,16 @@ const Register = () => {
 
             //3.save username and photo in firebase
             await updateUserProfile(name, image_url)
+            const userInfo = {
+                name: name,
+                email: email,
+                isPremium: 'null',
+                photoURL: image_url
+            }
+            axiosPublic.post('/users', userInfo)
+           .then(res =>{
+            console.log(res.data);
+           })
 
             navigate('/');
             toast.success("Registration Successfully")

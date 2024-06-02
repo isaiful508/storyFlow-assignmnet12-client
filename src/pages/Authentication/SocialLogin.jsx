@@ -1,29 +1,36 @@
 import { useNavigate } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import toast from "react-hot-toast";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 
 const SocialLogin = () => {
     const { signInWithGoogle } = useAuth();
     const navigate = useNavigate();
+    const axiosPublic = useAxiosPublic();
 
    // Google Signin
 
    const handleGoogleLogin = () => {
-
     signInWithGoogle()
         .then((result) => {
-            const googleUser = result.user
-        //    console.log(googleUser);
-            toast.success("Login Successfully")
+            const userInfo = {
+                email: result.user?.email,
+                name: result.user?.displayName,
+                isPremium: 'null',
+                photoURL: result.user?.photoURL
+            };
 
-            navigate(location?.state ? location.state : '/');
-          
-
+            axiosPublic.post('/users', userInfo)
+                .then((res) => {
+                    console.log(res.data);
+                    navigate('/');
+                    toast.success("Login Successfully");
+                })
+                .catch(error => console.error(error));
         })
-        .catch(error => console.error(error))
-}
-
+        .catch(error => console.error(error));
+};
 
     return (
         <div>

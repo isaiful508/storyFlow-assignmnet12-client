@@ -8,6 +8,9 @@ import Login from "../pages/Authentication/Login";
 import AddArticles from "../pages/AddArticles/AddArticles";
 import PrivateRoutes from "./PrivateRoutes";
 import DashboardLayouts from "../Layouts/DashboardLayouts";
+import AllUsers from "../pages/Dashboard/AllUsers/AllUsers";
+import AllArticles from "../pages/Dashboard/AllArticles/AllArticles";
+import AddPublisher from "../pages/Dashboard/AddPublisher/AddPublisher";
 
 
   const router = createBrowserRouter([
@@ -38,7 +41,18 @@ import DashboardLayouts from "../Layouts/DashboardLayouts";
       path:'/dashboard',
       element: <DashboardLayouts></DashboardLayouts>,
       children: [
-        
+        {
+          path: 'all-users',
+          element:<AllUsers></AllUsers>
+        },
+        {
+          path:'all-articles',
+          element:<AllArticles></AllArticles>
+        },
+        {
+          path:'add-publisher',
+          element:<AddPublisher></AddPublisher>
+        }
       ]
     }
   ]);

@@ -22,7 +22,8 @@ const Login = () => {
             setLoading(true)
             await logIn(email, password);
 
-            toast.success("Login Successfully")
+            toast.success("Login Successfully");
+            navigate('/');
 
         } catch (error) {
             console.log(error);
