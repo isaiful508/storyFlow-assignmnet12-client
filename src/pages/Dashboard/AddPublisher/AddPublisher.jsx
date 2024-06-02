@@ -12,12 +12,12 @@ const AddPublisher = () => {
         const publisherName = form.name.value;
         const logo = form.image.files[0];
 
-        console.log(publisherName, logo);
+        // console.log(publisherName, logo);
 
         try {
             // 1. Upload image and get image URL
             const image_url = await imageUpload(logo);
-            console.log(image_url);
+            // console.log(image_url);
 
             const publisherInfo = {
                 publisher: publisherName,
@@ -25,9 +25,10 @@ const AddPublisher = () => {
             };
 
             const res = await axiosPublic.post('/publishers', publisherInfo);
-            console.log(res.data);
-            if(res.data.insertedId > 0){
+            // console.log(res.data);
+            if(res.data.insertedId){
                 toast.success("Added Publisher Successfully");
+                form.reset();
             }
 
            

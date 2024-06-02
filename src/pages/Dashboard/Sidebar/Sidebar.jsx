@@ -12,6 +12,7 @@ import { MdArticle,MdOutlineLibraryBooks } from 'react-icons/md'
 import useAuth from '../../../Hooks/useAuth'
 import { IoHome } from 'react-icons/io5'
 import { FaUsers } from 'react-icons/fa'
+import { Toaster } from 'react-hot-toast'
 
 const Sidebar = () => {
 
@@ -25,6 +26,10 @@ const Sidebar = () => {
 
     return (
         <>
+         <Toaster
+                position="top-center"
+                reverseOrder={false}
+            /> 
         {/* Small Screen Navbar */}
         <div className='bg-gray-100 text-gray-800 flex justify-between md:hidden'>
           <div>
