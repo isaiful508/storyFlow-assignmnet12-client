@@ -12,6 +12,7 @@ import AllUsers from "../pages/Dashboard/AllUsers/AllUsers";
 import AllArticles from "../pages/Dashboard/AllArticles/AllArticles";
 import AddPublisher from "../pages/Dashboard/AddPublisher/AddPublisher";
 import AdminRoutes from "./AdminRoutes";
+import ErrorPage from "../Error/ErrorPage";
 
 
   const router = createBrowserRouter([
@@ -19,6 +20,7 @@ import AdminRoutes from "./AdminRoutes";
       path: "/",
       
       element:<MainLayouts></MainLayouts>,
+      errorElement: <ErrorPage></ErrorPage>,
       children: [
         {
           path:'/',
