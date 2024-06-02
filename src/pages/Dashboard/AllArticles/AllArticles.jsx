@@ -1,5 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
+import { MdDelete } from "react-icons/md";
+import { FcAcceptDatabase } from "react-icons/fc";
+import toast from "react-hot-toast";
 
 
 const AllArticles = () => {
@@ -17,6 +20,43 @@ const AllArticles = () => {
         return text.split(' ').slice(0, 3).join(' ');
     };
 
+    //article apporove handler
+
+    const handleApproveArticle = async (article) => {
+        console.log(article)
+        try {
+            const res = await axiosPublic.patch(`/articles/${article._id}/status`, { status: 'approved' });
+            if (res.data.modifiedCount > 0) {
+                toast.success("Article approved successfully");
+                refetch();
+            } else {
+                toast.error("Failed to approve article");
+            }
+        } catch (error) {
+            console.error('Error approving article:', error);
+            toast.error("Error approving article");
+        }
+    };
+
+
+    //article premium updater
+    const handleMakePremium = async (article) => {
+        try {
+            const res = await axiosPublic.patch(`/articles/${article._id}/premium`, { isPremium: 'yes' });
+            if (res.data.modifiedCount > 0) {
+                toast.success("Article marked as premium successfully");
+                refetch();
+            } else {
+                toast.error("Failed to mark article as premium");
+            }
+        } catch (error) {
+            console.error('Error making article premium:', error);
+            toast.error("Error making article premium");
+        }
+    };
+
+
+
     return (
         <div>
             <div className="text-center cinzel-700">
@@ -30,7 +70,7 @@ const AllArticles = () => {
 
                 <table className="table">
                     {/* head */}
-                    <thead className="noto-600 bg-[#5f59f7] text-white">
+                    <thead className="noto-600 bg-[#5f59f7] text-white shadow-xl">
                         <tr>
                             <th>No.</th>
                             <th>Title</th>
@@ -42,6 +82,7 @@ const AllArticles = () => {
                             <th>Status</th>
                             <th>Approve</th>
                             <th>Decline</th>
+                            <th>Make Premium</th>
                             <th>Delete</th>
                         </tr>
 
@@ -71,15 +112,40 @@ const AllArticles = () => {
 
                                 <td>{new Date(article.postedDate).toLocaleDateString()}</td>
                                 <td>{article.publisher}</td>
-                                <td>{article.status}</td>
-                                <td>
-                                    <button className="btn btn-success">Approve</button>
+
+                                <td className={article.status === 'pending' ? 'btn rounded-full bg-red-500 text-white' : 'btn rounded-full bg-green-500 text-white'}>
+                                    {article.status}
                                 </td>
                                 <td>
-                                    <button className="btn btn-warning">Decline</button>
+                                    {
+                                        article.status === 'pending' && <button
+                                            onClick={() => handleApproveArticle(article)}
+                                            className="btn btn-success text-white rounded-full"><FcAcceptDatabase className="text-2xl" /></button>
+                                    }
+
                                 </td>
                                 <td>
-                                    <button className="btn btn-danger">Delete</button>
+
+                                    {
+                                        article.status === 'pending' ? <button className="btn btn-warning
+                                        rounded-full text-white">Decline</button> : ''
+                                    }
+                                    
+                                </td>
+                                <td>
+                                {article.isPremium === 'no' ? (
+                                        <button
+                                            onClick={() => handleMakePremium(article)}
+                                            className="btn btn-primary rounded-full text-white"
+                                        >
+                                            Make Premium
+                                        </button>
+                                    ) : (
+                                        <span className="text-green-600 font-semibold">It is Premium</span>
+                                    )}
+                                </td>
+                                <td>
+                                    <button className="btn btn-ghost btn-xs"> <MdDelete className="text-xl text-red-600" /></button>
                                 </td>
                             </tr>)
                         }
