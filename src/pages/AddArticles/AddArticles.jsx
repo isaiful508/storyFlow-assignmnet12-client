@@ -4,11 +4,14 @@ import { useQuery } from "@tanstack/react-query";
 import Select from 'react-select';
 import { imageUpload } from "../../utils";
 import toast from "react-hot-toast";
+import useAuth from "../../Hooks/useAuth";
 
 
 const AddArticles = () => {
     const axiosPublic = useAxiosPublic();
-    const [selectedTags, setSelectedTags] = useState(null);
+    const {user} = useAuth();
+
+    const [selectedTags, setSelectedTags] = useState([]);
 
 
     const { data: publishers = [] } = useQuery({
@@ -35,7 +38,7 @@ const AddArticles = () => {
         const title = form.title.value;
         const description = form.description.value;
         const publisher = form.publisher.value;
-        const tags= selectedTags.value;
+        const tags = selectedTags.map(tag => tag.value);
         const image = form.image.files[0];
         
         console.log(title, publisher, description, tags, image);
@@ -47,7 +50,7 @@ const AddArticles = () => {
             const image_url = await imageUpload(image);
             // console.log(image_url);
 
-            //3.save username and photo in firebase
+            //post artices on database
            
             const articles = {
                 title: title,
@@ -55,11 +58,15 @@ const AddArticles = () => {
                 image: image_url,
                 publisher: publisher,
                 tags: tags,
+                authorName : user?.displayName,
+                authorEmail: user?.email,
+                authorPhoto: user?.photoURL,
                 status: 'pending',
+                isPremium: 'no'
             }
             axiosPublic.post('/articles', articles)
            .then(res =>{
-            // console.log(res.data);
+            console.log(res.data);
             if(res.data.insertedId){
                 toast.success("Added Article Successfully");
                 form.reset();
@@ -131,6 +138,7 @@ const AddArticles = () => {
                                 <label className="text-sm">Tags</label>
 
                                 <Select
+                                isMulti={true}
                                     defaultValue={selectedTags}
                                     onChange={setSelectedTags}
                                     options={tagsOptions}
