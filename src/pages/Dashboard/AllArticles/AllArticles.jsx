@@ -56,6 +56,23 @@ const AllArticles = () => {
     };
 
 
+//delete article
+const handleDeleteArticle = async (article) => {
+    try {
+        const res = await axiosPublic.delete(`/articles/${article._id}`);
+        if (res.data.deletedCount > 0) {
+            toast.success("Article deleted successfully");
+            refetch();
+        } else {
+            toast.error("Failed to delete article");
+        }
+    } catch (error) {
+        console.error('Error deleting article:', error);
+        toast.error("Error deleting article");
+    }
+};
+
+
 
     return (
         <div>
@@ -145,7 +162,9 @@ const AllArticles = () => {
                                     )}
                                 </td>
                                 <td>
-                                    <button className="btn btn-ghost btn-xs"> <MdDelete className="text-xl text-red-600" /></button>
+                                    <button
+                                    onClick={() => handleDeleteArticle(article)}
+                                    className="btn btn-ghost btn-xs"> <MdDelete className="text-xl text-red-600" /></button>
                                 </td>
                             </tr>)
                         }
