@@ -14,6 +14,7 @@ import AddPublisher from "../pages/Dashboard/AddPublisher/AddPublisher";
 import AdminRoutes from "./AdminRoutes";
 import ErrorPage from "../Error/ErrorPage";
 import UserAllArticles from "../pages/UserAllArticles/UserAllArticles";
+import UserArticleDetails from "../pages/UserAllArticles/UserArticleDetails";
 
 
   const router = createBrowserRouter([
@@ -42,6 +43,11 @@ import UserAllArticles from "../pages/UserAllArticles/UserAllArticles";
         {
           path:'/userAllArticles',
           element: <UserAllArticles></UserAllArticles>
+        },
+        {
+          path:'/articles/:id',
+          element: <UserArticleDetails></UserArticleDetails>,
+          
         }
       ]
     },
