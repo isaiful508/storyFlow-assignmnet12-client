@@ -46,7 +46,7 @@ import UserArticleDetails from "../pages/UserAllArticles/UserArticleDetails";
         },
         {
           path:'/articles/:id',
-          element: <UserArticleDetails></UserArticleDetails>,
+          element: <PrivateRoutes><UserArticleDetails></UserArticleDetails></PrivateRoutes>,
           
         }
       ]
