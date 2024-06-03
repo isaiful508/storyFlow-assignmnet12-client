@@ -13,6 +13,7 @@ import AllArticles from "../pages/Dashboard/AllArticles/AllArticles";
 import AddPublisher from "../pages/Dashboard/AddPublisher/AddPublisher";
 import AdminRoutes from "./AdminRoutes";
 import ErrorPage from "../Error/ErrorPage";
+import UserAllArticles from "../pages/UserAllArticles/UserAllArticles";
 
 
   const router = createBrowserRouter([
@@ -37,6 +38,10 @@ import ErrorPage from "../Error/ErrorPage";
         {
           path:'/addArticles',
           element:<PrivateRoutes><AddArticles></AddArticles></PrivateRoutes>
+        },
+        {
+          path:'/userAllArticles',
+          element: <UserAllArticles></UserAllArticles>
         }
       ]
     },
