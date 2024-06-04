@@ -13,7 +13,7 @@ const AddArticles = () => {
 
     const [selectedTags, setSelectedTags] = useState([]);
 
-
+//publisher data fetch
     const { data: publishers = [] } = useQuery({
         queryKey: ['publishers'],
         queryFn: async () => {
