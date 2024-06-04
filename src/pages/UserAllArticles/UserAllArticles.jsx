@@ -9,6 +9,7 @@ const UserAllArticles = () => {
     const axiosPublic = useAxiosPublic();
     const [searchTerm, setSearchTerm] = useState('');
     const [selectedPublisher, setSelectedPublisher] = useState('');
+    const [selectedTags, setSelectedTags] = useState([]);
     const [filteredArticles, setFilteredArticles] = useState([]);
     
    
@@ -38,7 +39,7 @@ const UserAllArticles = () => {
         { value: 'Science', label: 'Science' },
     ];
 
-
+//filetr by publisher
     const { data: filteredPublisher = [] } = useQuery({
         queryKey: ['filteredPublisher', selectedPublisher],
         queryFn: async () => {
@@ -49,13 +50,32 @@ const UserAllArticles = () => {
     });
 
 
-    useEffect(() => {
-        const filteredByPublisher = selectedPublisher ? approvedArticles.filter(article => article.publisher === selectedPublisher) : approvedArticles;
+    //filter effects
+    // useEffect(() => {
+    //     const filteredByPublisher = selectedPublisher ? approvedArticles.filter(article => article.publisher === selectedPublisher) : approvedArticles;
 
-        const filteredBySearch = filteredByPublisher.filter(article => article.title.toLowerCase().includes(searchTerm.toLowerCase()));
+    //     const filteredBySearch = filteredByPublisher.filter(article => article.title.toLowerCase().includes(searchTerm.toLowerCase()));
+    //     setFilteredArticles(filteredBySearch);
+
+    // }, [approvedArticles, selectedPublisher, searchTerm]);
+
+
+    useEffect(() => {
+        let filteredByPublisher = approvedArticles;
+        if (selectedPublisher) {
+            filteredByPublisher = approvedArticles.filter(article => article.publisher === selectedPublisher);
+        }
+
+        let filteredBySearch = filteredByPublisher.filter(article => article.title.toLowerCase().includes(searchTerm.toLowerCase()));
+
+        if (selectedTags.length > 0) {
+            filteredBySearch = filteredBySearch.filter(article =>
+                selectedTags.some(tag => article.tags.includes(tag.value))
+            );
+        }
+
         setFilteredArticles(filteredBySearch);
-        
-    }, [approvedArticles, selectedPublisher, searchTerm]);
+    }, [approvedArticles, selectedPublisher, searchTerm, selectedTags]);
 
 
 
@@ -101,6 +121,8 @@ const UserAllArticles = () => {
                         className="ml-2"
                         isMulti
                         options={tagsOptions}
+                        value={selectedTags}
+                        onChange={setSelectedTags}
                         
                         
                        
