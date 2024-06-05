@@ -46,18 +46,10 @@ const UserAllArticles = () => {
             const res = await axiosPublic.get(`/articles/publisher/${selectedPublisher}`);
             return res.data;
         },
-        enabled: !!selectedPublisher, // Enable query only when a publisher is selected
+        enabled: !!selectedPublisher, 
     });
 
 
-    //filter effects
-    // useEffect(() => {
-    //     const filteredByPublisher = selectedPublisher ? approvedArticles.filter(article => article.publisher === selectedPublisher) : approvedArticles;
-
-    //     const filteredBySearch = filteredByPublisher.filter(article => article.title.toLowerCase().includes(searchTerm.toLowerCase()));
-    //     setFilteredArticles(filteredBySearch);
-
-    // }, [approvedArticles, selectedPublisher, searchTerm]);
 
 
     useEffect(() => {

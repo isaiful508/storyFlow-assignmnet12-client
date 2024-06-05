@@ -18,7 +18,7 @@ const UserArticleDetails = () => {
             return res.data;
         }
     });
-    // console.log(article);
+    console.log(article);
 
     useEffect(() => {
         const incrementViewCount = async () => {
@@ -30,7 +30,7 @@ const UserArticleDetails = () => {
         };
         incrementViewCount();
         // console.log(incrementViewCount);
-    }, [id, axiosPublic]);
+    }, [id]);
 
 
     //loading spinner set
