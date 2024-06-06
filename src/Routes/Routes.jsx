@@ -15,6 +15,7 @@ import AdminRoutes from "./AdminRoutes";
 import ErrorPage from "../Error/ErrorPage";
 import UserAllArticles from "../pages/UserAllArticles/UserAllArticles";
 import UserArticleDetails from "../pages/UserAllArticles/UserArticleDetails";
+import MyArticles from "../pages/MyArticles/MyArticles";
 
 
   const router = createBrowserRouter([
@@ -48,9 +49,14 @@ import UserArticleDetails from "../pages/UserAllArticles/UserArticleDetails";
           path:'/articles/:id',
           element: <PrivateRoutes><UserArticleDetails></UserArticleDetails></PrivateRoutes>,
           
+        },
+        {
+          path: '/myArticles',
+          element: <PrivateRoutes><MyArticles></MyArticles></PrivateRoutes>
         }
       ]
     },
+    // admin route
     {
       path:'/dashboard',
       element: <AdminRoutes><DashboardLayouts></DashboardLayouts></AdminRoutes>,

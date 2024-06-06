@@ -1,10 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
-import { MdDelete } from "react-icons/md";
-import { FcAcceptDatabase } from "react-icons/fc";
 import toast from "react-hot-toast";
 import { useState } from "react";
-import { Modal } from "flowbite-react";
 import AllArticleTable from "./AllArticleTable";
 
 

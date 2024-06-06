@@ -81,11 +81,6 @@ const UserAllArticles = () => {
 
     
 
-    // const filteredArticles = approvedArticles.filter((article) =>
-    //     article.title.toLowerCase().includes(searchTerm.toLowerCase())
-    // );
-
-
     return (
         <div className='container mx-auto mt-6'>
             <div className="flex justify-between items-center  mt-2 mb-10">

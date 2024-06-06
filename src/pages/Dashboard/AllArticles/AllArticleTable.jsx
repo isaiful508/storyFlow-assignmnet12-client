@@ -94,7 +94,7 @@ const AllArticleTable = ({article, idx, refetch}) => {
         try {
             const res = await axiosPublic.patch(`/articles/${_id}/declinedStatus`, { status: 'declined', declinedReason: reason });
             if (res.data.modifiedCount > 0) {
-                // const res = await axiosPublic.post(`articles/`)
+                
                 toast.success("Article declined successfully");
                 setOpenModal(false);
                 refetch();
