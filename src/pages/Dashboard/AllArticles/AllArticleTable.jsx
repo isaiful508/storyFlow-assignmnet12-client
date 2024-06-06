@@ -6,6 +6,7 @@ import { FcAcceptDatabase } from "react-icons/fc";
 import toast from "react-hot-toast";
 import { useState } from "react";
 import { Modal } from "flowbite-react";
+import Swal from "sweetalert2";
 
 
 const AllArticleTable = ({article, idx, refetch}) => {
@@ -61,21 +62,47 @@ const AllArticleTable = ({article, idx, refetch}) => {
     };
 
 
-    //delete article
     const handleDeleteArticle = async (article) => {
-        try {
-            const res = await axiosPublic.delete(`/articles/${article._id}`);
-            if (res.data.deletedCount > 0) {
-                toast.success("Article deleted successfully");
-                refetch();
-            } else {
-                toast.error("Failed to delete article");
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#5f59f7",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                try {
+                    const res = await axiosPublic.delete(`/articles/${article._id}`);
+                    if (res.data.deletedCount > 0) {
+                        Swal.fire({
+                            title: "Deleted!",
+                            text: `${title} has been deleted.`,
+                            icon: "success"
+                        });
+                        refetch();
+                    } else {
+                        Swal.fire({
+                            title: "Failed!",
+                            text: "Failed to delete article.",
+                            icon: "error"
+                        });
+                    }
+                } catch (error) {
+                    console.error('Error deleting article:', error);
+                    Swal.fire({
+                        title: "Error!",
+                        text: "Error deleting article.",
+                        icon: "error"
+                    });
+                }
             }
-        } catch (error) {
-            console.error('Error deleting article:', error);
-            toast.error("Error deleting article");
-        }
+        });
     };
+
+
+
 
     const sliceTitle = (text) => {
         return text.split(' ').slice(0, 3).join(' ');
