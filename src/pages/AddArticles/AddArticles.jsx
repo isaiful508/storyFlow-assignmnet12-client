@@ -29,6 +29,7 @@ const AddArticles = () => {
         { value: 'International', label: 'International' },
         { value: 'Sports', label: 'Sports' },
         { value: 'Science', label: 'Science' },
+        { value: 'Entertainment', label: 'Entertainment' },
 
     ];
 

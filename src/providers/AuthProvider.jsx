@@ -93,6 +93,7 @@ const AuthProvider = ({ children }) => {
     resetPassword,
     logOut,
     updateUserProfile,
+    setUser
   }
 
   return (

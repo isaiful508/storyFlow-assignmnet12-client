@@ -16,6 +16,7 @@ import ErrorPage from "../Error/ErrorPage";
 import UserAllArticles from "../pages/UserAllArticles/UserAllArticles";
 import UserArticleDetails from "../pages/UserAllArticles/UserArticleDetails";
 import MyArticles from "../pages/MyArticles/MyArticles";
+import MyProfile from "../pages/MyProfile/MyProfile";
 
 
   const router = createBrowserRouter([
@@ -53,6 +54,10 @@ import MyArticles from "../pages/MyArticles/MyArticles";
         {
           path: '/myArticles',
           element: <PrivateRoutes><MyArticles></MyArticles></PrivateRoutes>
+        },
+        {
+          path: '/myProfile',
+          element: <PrivateRoutes><MyProfile></MyProfile></PrivateRoutes>
         }
       ]
     },

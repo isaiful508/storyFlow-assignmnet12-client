@@ -16,10 +16,11 @@ const MyArticlesTable = ({ article, idx, refetch }) => {
     const { title,
         status,
         isPremium,
-
         _id,
-
-        declinedReason
+        declinedReason,
+        publisher,
+        description,
+        tags
     } = article;
 
     const [openModal, setOpenModal] = useState(false);
@@ -90,6 +91,7 @@ const MyArticlesTable = ({ article, idx, refetch }) => {
         { value: 'International', label: 'International' },
         { value: 'Sports', label: 'Sports' },
         { value: 'Science', label: 'Science' },
+        { value: 'Entertainment', label: 'Entertainment' }
 
     ];
 
@@ -197,13 +199,13 @@ const MyArticlesTable = ({ article, idx, refetch }) => {
                             <div className="flex justify-center  items-center gap-4">
                                 <div className="w-1/2">
                                     <label className="text-sm">Title</label>
-                                    <input type="text" name="title" placeholder="Enter Title Here" className="w-full rounded-md focus:ring focus:ring-opacity-75 dark:text-gray-50 focus:dark:ring-violet-600 dark:border-gray-300 input input-bordered" />
+                                    <input defaultValue={title} type="text" name="title" placeholder="Enter Title Here" className="w-full rounded-md focus:ring focus:ring-opacity-75 dark:text-gray-50 focus:dark:ring-violet-600 dark:border-gray-300 input input-bordered" />
                                 </div>
                                 <div className="col-span-full w-1/2 sm:col-span-3">
                                     <label className="text-sm">Publisher</label>
                                     <select className="w-full input input-bordered" name="publisher">
                                         {publishers.map(item => (
-                                            <option key={item._id} value={item.publisher}>{item.publisher}</option>
+                                            <option defaultValue={publisher} key={item._id} value={item.publisher}>{item.publisher}</option>
                                         ))}
                                     </select>
                                 </div>
@@ -211,7 +213,7 @@ const MyArticlesTable = ({ article, idx, refetch }) => {
                             <div className="flex justify-center items-center gap-4">
                                 <div className="w-1/2">
                                     <label className="text-sm">Description</label>
-                                    <textarea name="description" type="text" placeholder="Description" className="w-full rounded-md focus:ring focus:ring-opacity-75 dark:text-gray-50 focus:dark:ring-violet-600 dark:border-gray-300 input input-bordered" />
+                                    <textarea defaultValue={description} name="description" type="text" placeholder="Description" className="w-full rounded-md focus:ring focus:ring-opacity-75 dark:text-gray-50 focus:dark:ring-violet-600 dark:border-gray-300 input input-bordered" />
                                 </div>
                                 <div className="w-1/2">
                                     <label className="text-sm">Tags</label>
