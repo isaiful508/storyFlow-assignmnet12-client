@@ -10,6 +10,7 @@ const Navbar = () => {
     const { user, logOut } = useAuth();
     const [isAdmin] = UseAdmin();
     const [isOpen, setIsOpen] = useState(false)
+    const [isOpen2, setIsOpen2] = useState(false)
 
     const navOptions =
         <> 
@@ -44,10 +45,10 @@ const Navbar = () => {
 
 
     return (
-        <div className="navbar flex  fixed bg-opacity z-10 text-center  text-white bg-[#15151580]">
+        <div className="navbar fixed bg-opacity z-10 text-center  lg:text-white bg-[#15151580]">
             <div className="navbar-start">
                 <div className="dropdown">
-                    <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+                    <div  onClick={() => setIsOpen2(!isOpen2)} tabIndex={0} role="button" className="btn btn-ghost lg:hidden text-white">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                     </div>
                     <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
@@ -58,7 +59,7 @@ const Navbar = () => {
                         
                     </ul>
                 </div>
-                <a className="btn btn-ghost text-xl">Story Flow</a>
+                <a className="btn btn-ghost text-xl text-white">Story Flow</a>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal flex items-center justify-between noto-700 px-1 space-x-3">
@@ -74,7 +75,7 @@ const Navbar = () => {
                   onClick={() => setIsOpen(!isOpen)}
                   className='p-4 md:py-1 md:px-2 border-[1px] border-neutral-200 flex flex-row items-center gap-3 rounded-full cursor-pointer hover:shadow-md transition'
                 >
-                  <AiOutlineMenu />
+                  <AiOutlineMenu className="text-white" />
                   <div className='hidden md:block'>
                     {/* Avatar */}
                     <img

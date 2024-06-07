@@ -1,34 +1,17 @@
-import { useQuery } from '@tanstack/react-query';
 import CountUp from 'react-countup';
-import useAxiosPublic from '../../../Hooks/useAxiosPublic';
 
 
-
-const Statistic = () => {
-    const axiosPublic = useAxiosPublic()
-    const { data: AllUsers = [], } = useQuery({
-        queryKey: ['AllUsers'],
-        queryFn: async () => {
-            const res = await axiosPublic.get('/users');
-
-            return res.data;
-        }
-    })
-    // console.log(AllUsers);
-    
-    
-   
+const StatisticCount = ({allUser}) => {
     return (
-       <div>
-         <div className="mt-20 text-center  w-full">
+        <div className="mt-20 text-center  w-full">
         <div className="stats stats-vertical lg:stats-horizontal shadow-lg w-full">
 
             <div className="stat">
                 <div className="stat-title text-2xl noto-600">All Users</div>
                 <div className="stat-value">
                 <CountUp
-                end={AllUsers.length}
-                duration={3}
+                end={31}
+                duration={2.75}
                 />
                     </div>
                
@@ -48,8 +31,7 @@ const Statistic = () => {
 
         </div>
     </div>
-       </div>
     );
 };
 
-export default Statistic;
+export default StatisticCount;
