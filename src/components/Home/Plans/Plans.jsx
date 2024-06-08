@@ -41,7 +41,7 @@ const Plans = () => {
                             <span className="pt-2 text-3xl font-bold text-gray-800 uppercase dark:text-gray-100">
                                 $10
                             </span>
-                            <span className="text-gray-500 dark:text-gray-400">/month</span>
+                            <span className="text-gray-500 dark:text-gray-400">/Day</span>
                         </div>
 
                         <ul className="flex-1 space-y-4">
@@ -51,7 +51,7 @@ const Plans = () => {
                             <li className="text-gray-500 dark:text-gray-400">Real-time collaborations</li>
                         </ul>
 
-                        <Link to='/subscription' className="text-white uppercase  btn  hover:bg-[#5f59f7] w-full bg-[#343090]">
+                        <Link to='/subscription/premium-duo/10' className="text-white uppercase  btn  hover:bg-[#5f59f7] w-full bg-[#343090]">
                             Get premium dou
                         </Link>
                     </div>
@@ -65,9 +65,9 @@ const Plans = () => {
 
                         <div className="flex-shrink-0">
                             <span className="pt-2 text-3xl font-bold text-gray-800 uppercase dark:text-gray-100">
-                                $15
+                                $5
                             </span>
-                            <span className="text-gray-500 dark:text-gray-400">/month</span>
+                            <span className="text-gray-500 dark:text-gray-400">/Day</span>
                         </div>
 
                         <ul className="flex-1 space-y-4">
@@ -78,9 +78,9 @@ const Plans = () => {
                             <li className="text-gray-500 dark:text-gray-400">24x7 Support</li>
                         </ul>
 
-                        <button className="text-white uppercase  btn  hover:bg-[#5f59f7] w-full bg-[#343090]">
+                        <Link to="/subscription/premium-family/5" className="text-white uppercase  btn  hover:bg-[#5f59f7] w-full bg-[#343090]">
                             get premium family
-                        </button>
+                        </Link >
                     </div>
                 </div>
             </div>

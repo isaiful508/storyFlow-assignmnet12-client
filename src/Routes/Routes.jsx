@@ -19,6 +19,8 @@ import MyArticles from "../pages/MyArticles/MyArticles";
 import MyProfile from "../pages/MyProfile/MyProfile";
 import Subscriptions from "../pages/Paymnet/Subscriptions/Subscriptions";
 import PremiumArticles from "../pages/PremiumArticles/PremiumArticles";
+import Plans from "../components/Home/Plans/Plans";
+import Payment from "../pages/Paymnet/Payment/Payment";
 
 
   const router = createBrowserRouter([
@@ -62,13 +64,18 @@ import PremiumArticles from "../pages/PremiumArticles/PremiumArticles";
           element: <PrivateRoutes><MyProfile></MyProfile></PrivateRoutes>
         },
         {
-          path:'/subscription',
+          path:'/subscription/:planType/:price',
           element:<Subscriptions></Subscriptions>
         },
         {
           path:'/premiumArticles',
           element: <PrivateRoutes><PremiumArticles></PremiumArticles></PrivateRoutes>
+        },
+        {
+          path:'/payment/:totalPrice',
+          element:<PrivateRoutes><Payment></Payment></PrivateRoutes>
         }
+        
       ]
     },
     // admin route
