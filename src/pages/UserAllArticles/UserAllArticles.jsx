@@ -22,7 +22,7 @@ const UserAllArticles = () => {
         }
     });
 
-   console.log(approvedArticles);
+//    console.log(approvedArticles);
 
     const { data: publishers = [] } = useQuery({
         queryKey: ['publishers'],
@@ -83,7 +83,7 @@ const UserAllArticles = () => {
     
 
     return (
-        <div className='container mx-auto mt-6'>
+        <div className='container mx-auto mt-6 p-10'>
             <div className="flex justify-between items-center  mt-2 mb-10">
                 <div className="text-black mt-10 font-500">
                     <form onSubmit={handleSearch}>
@@ -122,7 +122,7 @@ const UserAllArticles = () => {
        
             </div>
 
-            <div className="grid lg:grid-cols-3 grid-cols-1 gap-4">
+            <div className="grid lg:grid-cols-3 grid-cols-1 gap-8">
                 {filteredArticles.map(article => (
                     <UserArticleCard
                         article={article}

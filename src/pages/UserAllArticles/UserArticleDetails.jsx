@@ -18,7 +18,7 @@ const UserArticleDetails = () => {
             return res.data;
         }
     });
-    console.log(article);
+    // console.log(article);
 
     useEffect(() => {
         const incrementViewCount = async () => {

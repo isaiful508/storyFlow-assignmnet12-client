@@ -89,11 +89,11 @@ const Navbar = () => {
                   </div>
                 </div>
             {isOpen && (
-                <div className='absolute rounded-xl shadow-md w-[40vw] md:w-[10vw] bg-white overflow-hidden right-0 top-12 text-sm'>
+                <div className='absolute rounded-xl shadow-md w-[40vw] md:w-[10vw] bg-[#15151580] overflow-hidden right-0 top-12 text-sm text-white'>
                   <div className='flex flex-col cursor-pointer'>
                     <Link
                       to='/'
-                      className='block md:hidden px-4 py-3 hover:bg-neutral-100 transition font-semibold'
+                      className='block md:hidden px-4 py-3 hover:bg-neutral-400 transition font-semibold'
                     >
                       Home
                     </Link>

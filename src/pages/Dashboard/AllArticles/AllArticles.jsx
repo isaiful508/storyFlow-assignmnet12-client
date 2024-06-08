@@ -1,16 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
-import toast from "react-hot-toast";
-import { useState } from "react";
+
 import AllArticleTable from "./AllArticleTable";
 
 
 const AllArticles = () => {
     const axiosPublic = useAxiosPublic();
-    const [openModal, setOpenModal] = useState(false);
-    const [selectedArticle, setSelectedArticle] = useState(null);
-    const [declineReason, setDeclineReason] = useState('');
-
 
     //fetch all articles data
     const { data: articles = [], refetch } = useQuery({
@@ -22,48 +17,10 @@ const AllArticles = () => {
         }
     })
 
-    
-
-    //article apporove handler
-
-
-
-   
-     // Article decline handler
-     const handleDeclineArticle = async (article, reason) => {
-        if (!article) {
-            toast.error("No article selected for decline");
-            return;
-        }
-        try {
-            const res = await axiosPublic.patch(`/articles/${article._id}/status`, { status: 'declined', declineReason: reason });
-            if (res.data.modifiedCount > 0) {
-                toast.success("Article declined successfully");
-                setOpenModal(false);
-                refetch();
-            } else {
-                toast.error("Failed to decline article");
-            }
-        } catch (error) {
-            console.error('Error declining article:', error);
-            toast.error("Error declining article");
-        }
-    };
-
-    const handleDeclineClick = (article) => {
-        setSelectedArticle(article);
-        setOpenModal(true);
-    };
-
-    const handleModalSubmit = (e) => {
-        e.preventDefault();
-        handleDeclineArticle(selectedArticle, declineReason);
-    };
     return (
         <div>
             <div className="text-center cinzel-700">
                 <h2 className="text-4xl  noto-600">Here Is All Articles</h2>
-
 
             </div>
 
@@ -94,22 +51,22 @@ const AllArticles = () => {
 
                         {
                             articles.map((article, idx) => <AllArticleTable
-                            article={article}
-                            key={article._id}
-                            refetch={refetch}
-                            idx={idx}
+                                article={article}
+                                key={article._id}
+                                refetch={refetch}
+                                idx={idx}
                             ></AllArticleTable>)
                         }
 
-                        
+
 
                     </tbody>
 
                 </table>
-                
+
             </div>
 
-          
+
         </div>
     );
 };

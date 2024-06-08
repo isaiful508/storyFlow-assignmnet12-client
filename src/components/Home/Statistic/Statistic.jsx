@@ -24,7 +24,7 @@ const Statistic = () => {
         <div className="stats stats-vertical lg:stats-horizontal shadow-lg w-full">
 
             <div className="stat">
-                <div className="stat-title text-2xl noto-600">All Users</div>
+                <div className="stat-title text-2xl noto-600 text-base-content">All Users</div>
                 <div className="stat-value">
                 <CountUp
                 end={AllUsers.length}
@@ -35,13 +35,13 @@ const Statistic = () => {
             </div>
 
             <div className="stat">
-                <div className="stat-title text-2xl noto-600">Normal Users</div>
+                <div className="stat-title text-2xl noto-600 text-base-content">Normal Users</div>
                 <div className="stat-value">4,200</div>
                 
             </div>
 
             <div className="stat">
-                <div className="stat-title text-2xl noto-600">Premium Users</div>
+                <div className="stat-title text-2xl noto-600 text-base-content">Premium Users</div>
                 <div className="stat-value">1,200</div>
                 
             </div>

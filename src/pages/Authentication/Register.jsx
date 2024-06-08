@@ -64,7 +64,7 @@ const Register = () => {
 
             // user signup
             const result = await createUser(email, password)
-            console.log(result.user);
+            // console.log(result.user);
 
             //3.save username and photo in firebase
             await updateUserProfile(name, image_url)
@@ -76,14 +76,14 @@ const Register = () => {
             }
             axiosPublic.post('/users', userInfo)
            .then(res =>{
-            console.log(res.data);
+            // console.log(res.data);
            })
 
             navigate('/');
             toast.success("Registration Successfully")
 
         } catch (error) {
-            console.log(error);
+            // console.log(error);
             toast.error(error.message)
         }
 

@@ -29,7 +29,7 @@ const AllArticleTable = ({article, idx, refetch}) => {
 
     
     const handleApproveArticle = async (article) => {
-        console.log(article)
+        // console.log(article)
         try {
             const res = await axiosPublic.patch(`/articles/${article._id}/status`, { status: 'approved' });
             if (res.data.modifiedCount > 0) {
@@ -159,7 +159,7 @@ const AllArticleTable = ({article, idx, refetch}) => {
                                 <td>{new Date(postedDate).toLocaleDateString()}</td>
                                 <td>{publisher}</td>
 
-                                <td className={status === 'pending' ? 'btn rounded-full bg-red-500 text-white' : 'btn rounded-full bg-green-500 text-white'}>
+                                <td className={status === 'pending' || status === 'declined'? 'btn rounded-full bg-red-500 text-white' : 'btn rounded-full bg-green-500 text-white'}>
                                     {status}
                                 </td>
                                 <td>

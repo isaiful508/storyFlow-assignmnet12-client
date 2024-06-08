@@ -12,7 +12,7 @@ const MyProfile = () => {
     //handle update profile
     const handleUpdateProfile = async (e) => {
         e.preventDefault();
-        console.log(displayName, profilePicture)
+        // console.log(displayName, profilePicture)
 
         let image_url = user.photoURL;
 

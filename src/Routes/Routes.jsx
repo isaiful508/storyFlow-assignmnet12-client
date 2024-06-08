@@ -17,6 +17,8 @@ import UserAllArticles from "../pages/UserAllArticles/UserAllArticles";
 import UserArticleDetails from "../pages/UserAllArticles/UserArticleDetails";
 import MyArticles from "../pages/MyArticles/MyArticles";
 import MyProfile from "../pages/MyProfile/MyProfile";
+import Subscriptions from "../pages/Paymnet/Subscriptions/Subscriptions";
+import PremiumArticles from "../pages/PremiumArticles/PremiumArticles";
 
 
   const router = createBrowserRouter([
@@ -58,6 +60,14 @@ import MyProfile from "../pages/MyProfile/MyProfile";
         {
           path: '/myProfile',
           element: <PrivateRoutes><MyProfile></MyProfile></PrivateRoutes>
+        },
+        {
+          path:'/subscription',
+          element:<Subscriptions></Subscriptions>
+        },
+        {
+          path:'/premiumArticles',
+          element: <PrivateRoutes><PremiumArticles></PremiumArticles></PrivateRoutes>
         }
       ]
     },

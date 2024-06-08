@@ -24,12 +24,12 @@ const MyArticles = () => {
         return <LoadingSpinner></LoadingSpinner>
     }
 
-    console.log(articles);
+    // console.log(articles);
 
 
 
     return (
-        <div className="container mx-auto mt-10">
+        <div className="container mx-auto pt-20 mt-10">
             <div className="text-center">
             <h2 className="noto-700 text-3xl">Here Your Posted Articles</h2>
             <p className="noto-500">Here You can update, delete your articles</p>

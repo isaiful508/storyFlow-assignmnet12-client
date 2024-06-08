@@ -4,6 +4,7 @@ import AllPublishers from "../AllPublishers/AllPublishers";
 import Footer from "../Footer/Footer";
 import Statistic from "../Statistic/Statistic";
 import Trending from "../Trending/Trending";
+import Plans from "../Plans/Plans";
 
 
 
@@ -18,8 +19,8 @@ const Home = () => {
                 <Trending></Trending>
                 <AllPublishers></AllPublishers>
                 <div className="container mx-auto">
-                
                 <Statistic></Statistic>
+                <Plans></Plans>
                 </div>
            
             <Footer></Footer>

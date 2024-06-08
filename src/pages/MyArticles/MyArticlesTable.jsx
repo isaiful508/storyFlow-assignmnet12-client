@@ -105,7 +105,7 @@ const MyArticlesTable = ({ article, idx, refetch }) => {
         const tags = selectedTags.map(tag => tag.value);
         const image = form.image.files[0];
 
-        console.log(title, publisher, description, tags, image);
+        // console.log(title, publisher, description, tags, image);
         //upload image
         const image_url = await imageUpload(image);
         // console.log(image_url);

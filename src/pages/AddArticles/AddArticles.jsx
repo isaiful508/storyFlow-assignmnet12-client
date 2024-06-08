@@ -42,7 +42,7 @@ const AddArticles = () => {
         const tags = selectedTags.map(tag => tag.value);
         const image = form.image.files[0];
         
-        console.log(title, publisher, description, tags, image);
+        // console.log(title, publisher, description, tags, image);
 
 
         try {
@@ -66,8 +66,8 @@ const AddArticles = () => {
                 isPremium: 'no'
             }
             axiosPublic.post('/articles', articles)
-           .then(res =>{
-            console.log(res.data);
+           .then((res )=>{
+            // console.log(res.data);
             if(res.data.insertedId){
                 toast.success("Added Article Successfully");
                 form.reset();
@@ -77,7 +77,7 @@ const AddArticles = () => {
             
 
         } catch (error) {
-            console.log(error);
+            // console.log(error);
             toast.error(error.message)
         }
 
