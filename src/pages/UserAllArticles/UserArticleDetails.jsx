@@ -30,7 +30,7 @@ const UserArticleDetails = () => {
         };
         incrementViewCount();
         // console.log(incrementViewCount);
-    }, [id]);
+    }, [id,axiosPublic]);
 
 
     //loading spinner set
@@ -39,15 +39,8 @@ const UserArticleDetails = () => {
     }
 
 
-
-
-
-
-
-    
-
     return (
-        <div className="container mx-auto mt-10">
+        <div className="container mx-auto mt-10 pt-20">
             <div className="card lg:card-side bg-base-100 shadow-xl">
 
                 <img className="rounded-lg" src={article.image} alt="article_image" />

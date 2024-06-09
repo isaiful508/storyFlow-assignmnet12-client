@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 
 
 const Subscriptions = () => {
-    const { price, premiumDuo } = useParams();
+    const { price } = useParams();
     
     const navigate = useNavigate();
     const [totalPrice, setTotalPrice] = useState();

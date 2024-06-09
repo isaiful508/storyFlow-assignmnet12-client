@@ -1,12 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
 import CountUp from 'react-countup';
 import useAxiosPublic from '../../../Hooks/useAxiosPublic';
+import LoadingSpinner from '../../LoadingSpinner/LoadingSpinner';
 
 
 
 const Statistic = () => {
     const axiosPublic = useAxiosPublic()
-    const { data: AllUsers = [], } = useQuery({
+    const { data: AllUsers = [],isLoading } = useQuery({
         queryKey: ['AllUsers'],
         queryFn: async () => {
             const res = await axiosPublic.get('/users');
@@ -15,6 +16,14 @@ const Statistic = () => {
         }
     })
     // console.log(AllUsers);
+    if(isLoading){
+        return <LoadingSpinner
+        ></LoadingSpinner>
+    }
+    const isPremiumUser = (user) => user.premiumTaken && user.premiumTaken !== 'null';
+    
+    const normalUsersCount = AllUsers.filter(user => !isPremiumUser(user)).length;
+    const premiumUsersCount = AllUsers.filter(isPremiumUser).length;
     
     
    
@@ -36,13 +45,13 @@ const Statistic = () => {
 
             <div className="stat">
                 <div className="stat-title text-2xl noto-600 text-base-content">Normal Users</div>
-                <div className="stat-value">4,200</div>
+                <div className="stat-value"> <CountUp end={normalUsersCount} duration={3} /></div>
                 
             </div>
 
             <div className="stat">
                 <div className="stat-title text-2xl noto-600 text-base-content">Premium Users</div>
-                <div className="stat-value">1,200</div>
+                <div className="stat-value"> <CountUp end={premiumUsersCount} duration={3} /></div>
                 
             </div>
 

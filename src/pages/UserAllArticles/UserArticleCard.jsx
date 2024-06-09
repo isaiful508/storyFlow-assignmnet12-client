@@ -2,7 +2,7 @@
 import { Link } from "react-router-dom";
 
 
-const UserArticleCard = ({ article }) => {
+const UserArticleCard = ({ article, users, currentUser }) => {
   const { title,
     description,
     image,
@@ -14,6 +14,8 @@ const UserArticleCard = ({ article }) => {
 
   } = article;
 
+  
+
   const sliceDescription = (text) => {
     return text.split(' ').slice(0, 18).join(' ');
 
@@ -24,11 +26,12 @@ const UserArticleCard = ({ article }) => {
   const premiumDesign = isPremium === "yes"
     ? 'bg-green-200 border-green-500'
     : 'bg-red-200 border-red-500';
-
+    const currentUserData = users.find(user => user?.email === currentUser?.email);
+    const isPremiumUser = currentUserData && currentUserData.premiumTaken;
 
 
   return (
-    <div className={`card card-compact w-96 shadow-xl ${premiumDesign}`}>
+    <div className={`card card-compact  w-96 shadow-xl ${premiumDesign}`}>
       <figure><img src={image} alt="Shoes" /></figure>
       <div className="card-body">
         <h2 className="card-title noto-700">{title}</h2>
@@ -44,6 +47,7 @@ const UserArticleCard = ({ article }) => {
         <div className="card-actions">
           <Link
             to={`/articles/${_id}`}
+            disabled={isPremium === "yes" && !isPremiumUser}
             className="btn text-white hover:bg-[#5f59f7] bg-[#343090]">Details</Link>
         </div>
       </div>

@@ -39,15 +39,14 @@ const Plans = () => {
 
                         <div className="flex-shrink-0">
                             <span className="pt-2 text-3xl font-bold text-gray-800 uppercase dark:text-gray-100">
-                                $1000
+                                $2000
                             </span>
                             <span className="text-gray-500 dark:text-gray-400">/Day</span>
                         </div>
 
                         <ul className="flex-1 space-y-4">
-                            <li className="text-gray-500 dark:text-gray-400">Up to 10 projects</li>
+                            <li className="text-gray-500 dark:text-gray-400">Up to 10 news</li>
                             <li className="text-gray-500 dark:text-gray-400">Up to 20 collaborators</li>
-                            <li className="text-gray-500 dark:text-gray-400">10Gb of storage</li>
                             <li className="text-gray-500 dark:text-gray-400">Real-time collaborations</li>
                         </ul>
 
@@ -65,20 +64,20 @@ const Plans = () => {
 
                         <div className="flex-shrink-0">
                             <span className="pt-2 text-3xl font-bold text-gray-800 uppercase dark:text-gray-100">
-                                $700
+                                $1000
                             </span>
                             <span className="text-gray-500 dark:text-gray-400">/Day</span>
                         </div>
 
                         <ul className="flex-1 space-y-4">
-                            <li className="text-gray-500 dark:text-gray-400">Unlimited projects</li>
+                            <li className="text-gray-500 dark:text-gray-400">Unlimited News</li>
                             <li className="text-gray-500 dark:text-gray-400">Unlimited collaborators</li>
                             <li className="text-gray-500 dark:text-gray-400">Unlimited storage</li>
                             <li className="text-gray-500 dark:text-gray-400">Real-time collaborations</li>
                             <li className="text-gray-500 dark:text-gray-400">24x7 Support</li>
                         </ul>
 
-                        <Link to="/subscription/premiumFamily/50" className="text-white uppercase  btn  hover:bg-[#5f59f7] w-full bg-[#343090]">
+                        <Link to="/subscription/premiumFamily/1000" className="text-white uppercase  btn  hover:bg-[#5f59f7] w-full bg-[#343090]">
                             get premium family
                         </Link >
                     </div>

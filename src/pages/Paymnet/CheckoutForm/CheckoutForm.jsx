@@ -82,6 +82,7 @@ const CheckoutForm = ({totalPrice}) => {
                   axiosPublic.put(`/users/${user?.email}/premium`, { premiumTaken: formatISO(new Date()) })
                   .then(res => {
                       console.log('User premium status updated', res.data);
+                      window.location.reload()
                   })
                   .catch(err => {
                       console.error('Error updating user premium status', err);

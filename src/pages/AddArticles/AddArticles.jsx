@@ -5,6 +5,7 @@ import Select from 'react-select';
 import { imageUpload } from "../../utils";
 import toast from "react-hot-toast";
 import useAuth from "../../Hooks/useAuth";
+import Swal from "sweetalert2";
 
 
 const AddArticles = () => {
@@ -46,6 +47,19 @@ const AddArticles = () => {
 
 
         try {
+
+             // Check if user can add an article
+             const { data: canAddArticle } = await axiosPublic.get(`/can-add-article/${user?.email}`);
+
+             if (!canAddArticle.allowed) {
+                Swal.fire({
+                    icon: "error",
+                    title: "You are not allowed to add more articles",
+                    text: "Please buy premium plans!",
+                    
+                  });
+                 return;
+             }
        
             //1.upload image and get image url
             const image_url = await imageUpload(image);
@@ -86,11 +100,11 @@ const AddArticles = () => {
 
 
     return (
-        <div className="container  mx-auto">
-            <div className="container md:w-3/4 lg:1/2 mx-auto   p-6 dark:bg-gray-100 dark:text-gray-900   rounded-lg sora-500">
+        <div className="container lg:p-20 pt-10  mx-auto">
+            <div className="container md:w-3/4 lg:1/2 mx-auto   p-6 dark:bg-gray-100 dark:text-gray-900  rounded-lg sora-500">
 
                 <div>
-                    <h2 className="text-4xl text-center noto-600 mb-4 "> Add Your Articles Here</h2>
+                    <h2 className="lg:text-4xl text-2xl text-center noto-600 mb-4 "> Add Your Articles Here</h2>
                 </div>
 
                 <form onSubmit={handleSubmitArticle} className=" flex flex-col noto-600 space-y-12">

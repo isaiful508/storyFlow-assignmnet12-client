@@ -3,6 +3,7 @@ import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import UserArticleCard from "./UserArticleCard";
 import Select from 'react-select';
 import { useEffect, useState } from "react";
+import useAuth from './../../Hooks/useAuth';
 
 
 const UserAllArticles = () => {
@@ -11,6 +12,7 @@ const UserAllArticles = () => {
     const [selectedPublisher, setSelectedPublisher] = useState('');
     const [selectedTags, setSelectedTags] = useState([]);
     const [filteredArticles, setFilteredArticles] = useState([]);
+    const { user: currentUser } = useAuth();
     
    
 
@@ -80,7 +82,19 @@ const UserAllArticles = () => {
         setSearchTerm(e.target.search.value);
     };
 
+
+    //fetch user data
     
+    const { data: users = [] } = useQuery({
+        queryKey: ['users'],
+        queryFn: async () => {
+            const res = await axiosPublic.get('/users');
+
+            return res.data ;
+        },
+        
+    })
+
 
     return (
         <div className='container mx-auto mt-6 p-10'>
@@ -127,6 +141,8 @@ const UserAllArticles = () => {
                     <UserArticleCard
                         article={article}
                         key={article._id}
+                        users={users}
+                        currentUser={currentUser}
                     />
                 ))}
             </div>

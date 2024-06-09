@@ -79,8 +79,9 @@ const Register = () => {
             // console.log(res.data);
            })
 
-            navigate('/');
-            toast.success("Registration Successfully")
+           toast.success("Registration Successfully");
+           logOut()
+           navigate('/login');
 
         } catch (error) {
             // console.log(error);
