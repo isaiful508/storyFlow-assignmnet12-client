@@ -3,13 +3,17 @@ import useAuth from "../../Hooks/useAuth";
 import toast from "react-hot-toast";
 import SocialLogin from "./SocialLogin";
 import { useState } from "react";
+import axios from "axios";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 
 const Login = () => {
     const { logIn, setLoading, loading } = useAuth();
     const navigate = useNavigate();
+    const axiosPublic= useAxiosPublic();
     const location = useLocation();
     const [loginError, setLoginError] = useState("");
+    const from = location.state?.from?.pathname || '/';
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -21,9 +25,12 @@ const Login = () => {
         try {
             setLoading(true)
             await logIn(email, password);
+            const res = await axiosPublic.post('/login', { email, password });
+            const user = res.data;
+            console.log(user)
 
             toast.success("Login Successfully");
-            navigate('/');
+            navigate(from, { replace: true });
 
         } catch (error) {
             console.log(error);

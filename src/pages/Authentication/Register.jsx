@@ -71,11 +71,11 @@ const Register = () => {
             const userInfo = {
                 name: name,
                 email: email,
-                isPremium: 'null',
+                premiumTaken: 'null',
                 photoURL: image_url
             }
             axiosPublic.post('/users', userInfo)
-           .then(res =>{
+           .then((res) =>{
             // console.log(res.data);
            })
 

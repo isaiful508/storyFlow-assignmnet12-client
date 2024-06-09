@@ -65,7 +65,7 @@ import Payment from "../pages/Paymnet/Payment/Payment";
         },
         {
           path:'/subscription/:planType/:price',
-          element:<Subscriptions></Subscriptions>
+          element:<PrivateRoutes><Subscriptions></Subscriptions></PrivateRoutes>
         },
         {
           path:'/premiumArticles',

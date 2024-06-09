@@ -20,7 +20,7 @@ const Navbar = () => {
 
                 <NavLink to='/userAllArticles'  className={({ isActive }) => isActive ? 'text-[#3665b8] poppins-medium rounded-lg border-2 p-2 border-[#3665b8] font-600' : 'font-500'}>All Articles</NavLink>
 
-                <NavLink to='/subscription'  className={({ isActive }) => isActive ? 'text-[#3665b8] poppins-medium rounded-lg border-2 p-2 border-[#3665b8] font-600' : 'font-500'}>Subscription</NavLink>
+                <NavLink to='/subscription/premiumDuo/1000'  className={({ isActive }) => isActive ? 'text-[#3665b8] poppins-medium rounded-lg border-2 p-2 border-[#3665b8] font-600' : 'font-500'}>Subscription</NavLink>
 
                 {
               user && isAdmin && <NavLink to='/dashboard'  className={({ isActive }) => isActive ? 'text-[#3665b8] poppins-medium rounded-lg border-2 p-2 border-[#3665b8] font-600' : 'font-500'}>Dashboard</NavLink>

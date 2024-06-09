@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import toast from "react-hot-toast";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
@@ -8,6 +8,8 @@ const SocialLogin = () => {
     const { signInWithGoogle } = useAuth();
     const navigate = useNavigate();
     const axiosPublic = useAxiosPublic();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/'; 
 
    // Google Signin
 
@@ -17,17 +19,31 @@ const SocialLogin = () => {
             const userInfo = {
                 email: result.user?.email,
                 name: result.user?.displayName,
-                isPremium: 'null',
+                premiumTaken: 'null',
                 photoURL: result.user?.photoURL
             };
 
             axiosPublic.post('/users', userInfo)
                 .then((res) => {
                     // console.log(res.data);
-                    navigate('/');
+                    
+                    navigate(from, {replace: true});
                     toast.success("Login Successfully");
+
                 })
-                .catch(error => console.error(error));
+
+                axiosPublic.post('/login', { email: userInfo.email })
+                    .then((res) => {
+                        const user = res.data;
+                        console.log('Logged in user:', user);
+
+                        navigate(from, { replace: true });
+                        
+                    })
+                    .catch(error => {
+                        console.error('Error logging in user:', error);
+                        toast.error("Login Failed");
+                    });
         })
         .catch(error => console.error(error));
 };

@@ -39,7 +39,7 @@ const Plans = () => {
 
                         <div className="flex-shrink-0">
                             <span className="pt-2 text-3xl font-bold text-gray-800 uppercase dark:text-gray-100">
-                                $10
+                                $1000
                             </span>
                             <span className="text-gray-500 dark:text-gray-400">/Day</span>
                         </div>
@@ -51,7 +51,7 @@ const Plans = () => {
                             <li className="text-gray-500 dark:text-gray-400">Real-time collaborations</li>
                         </ul>
 
-                        <Link to='/subscription/premium-duo/10' className="text-white uppercase  btn  hover:bg-[#5f59f7] w-full bg-[#343090]">
+                        <Link to='/subscription/premiumDuo/1000' className="text-white uppercase  btn  hover:bg-[#5f59f7] w-full bg-[#343090]">
                             Get premium dou
                         </Link>
                     </div>
@@ -65,7 +65,7 @@ const Plans = () => {
 
                         <div className="flex-shrink-0">
                             <span className="pt-2 text-3xl font-bold text-gray-800 uppercase dark:text-gray-100">
-                                $5
+                                $700
                             </span>
                             <span className="text-gray-500 dark:text-gray-400">/Day</span>
                         </div>
@@ -78,7 +78,7 @@ const Plans = () => {
                             <li className="text-gray-500 dark:text-gray-400">24x7 Support</li>
                         </ul>
 
-                        <Link to="/subscription/premium-family/5" className="text-white uppercase  btn  hover:bg-[#5f59f7] w-full bg-[#343090]">
+                        <Link to="/subscription/premiumFamily/50" className="text-white uppercase  btn  hover:bg-[#5f59f7] w-full bg-[#343090]">
                             get premium family
                         </Link >
                     </div>

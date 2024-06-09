@@ -12,6 +12,7 @@ const DashboardLayouts = () => {
             /> 
         {/* Sidebar */}
         <Sidebar />
+        
   
         {/* Outlet --> Dynamic content */}
         <div className='flex-1 md:ml-64'>
