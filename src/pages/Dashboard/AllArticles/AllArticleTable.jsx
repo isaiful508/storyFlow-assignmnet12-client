@@ -1,5 +1,4 @@
 /* eslint-disable react/prop-types */
-import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import { MdDelete } from "react-icons/md";
 import { FcAcceptDatabase } from "react-icons/fc";

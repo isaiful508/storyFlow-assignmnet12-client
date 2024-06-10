@@ -1,17 +1,16 @@
 import { useQuery } from "@tanstack/react-query";
-import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import toast from "react-hot-toast";
 import { FaUsers } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 
 const AllUsers = () => {
-    const axiosPublic = useAxiosPublic()
+    const axiosSecure = useAxiosSecure()
     const { data: users = [], refetch } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
-            const res = await axiosPublic.get('/users');
-
+            const res = await axiosSecure.get('/users');
             return res.data;
         }
     })
@@ -19,7 +18,7 @@ const AllUsers = () => {
 
     //make admin a user
     const handleMakeAdmin = user => {
-        axiosPublic.patch(`/users/admin/${user._id}`)
+        axiosSecure.patch(`/users/admin/${user._id}`)
             .then((res) => {
                 // console.log(res.data);
                 if (res.data.modifiedCount > 0) {

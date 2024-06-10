@@ -19,7 +19,6 @@ import MyArticles from "../pages/MyArticles/MyArticles";
 import MyProfile from "../pages/MyProfile/MyProfile";
 import Subscriptions from "../pages/Paymnet/Subscriptions/Subscriptions";
 import PremiumArticles from "../pages/PremiumArticles/PremiumArticles";
-import Plans from "../components/Home/Plans/Plans";
 import Payment from "../pages/Paymnet/Payment/Payment";
 
 
@@ -85,15 +84,15 @@ import Payment from "../pages/Paymnet/Payment/Payment";
       children: [
         {
           path: 'all-users',
-          element:<AllUsers></AllUsers>
+          element:<AdminRoutes><AllUsers></AllUsers></AdminRoutes>
         },
         {
           path:'all-articles',
-          element:<AllArticles></AllArticles>
+          element:<AdminRoutes><AllArticles></AllArticles></AdminRoutes>
         },
         {
           path:'add-publisher',
-          element:<AddPublisher></AddPublisher>
+          element:<AdminRoutes><AddPublisher></AddPublisher></AdminRoutes>
         }
       ]
     }

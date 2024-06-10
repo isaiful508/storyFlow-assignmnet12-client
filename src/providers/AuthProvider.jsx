@@ -14,6 +14,7 @@ import {
 } from 'firebase/auth'
 import axios from 'axios'
 import { app } from '../Firebase/firebase.config'
+import useAxiosPublic from '../Hooks/useAxiosPublic'
 
 
 export const AuthContext = createContext(null)
@@ -23,6 +24,7 @@ const googleProvider = new GoogleAuthProvider()
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(true);
+  const axiosPublic = useAxiosPublic();
 
   const createUser = (email, password) => {
     setLoading(true)
@@ -46,9 +48,7 @@ const AuthProvider = ({ children }) => {
 
   const logOut = async () => {
     setLoading(true)
-    // await axios.get(`${import.meta.env.VITE_API_URL}/logout`, {
-    //   withCredentials: true,
-    // })
+   
     return signOut(auth)
   }
 
@@ -58,15 +58,7 @@ const AuthProvider = ({ children }) => {
       photoURL: photo,
     })
   }
-  // Get token from server
-  // const getToken = async email => {
-  //   const { data } = await axios.post(
-  //     `${import.meta.env.VITE_API_URL}/jwt`,
-  //     { email },
-  //     { withCredentials: true }
-  //   )
-  //   return data
-  // }
+  
 
   // onAuthStateChange
   useEffect(() => {
@@ -74,14 +66,27 @@ const AuthProvider = ({ children }) => {
       setUser(currentUser);
       // console.log('------>', currentUser);
       if (currentUser) {
-        // getToken(currentUser.email)
+        //get token and store client
+        const userInfo = {email : currentUser.email};
+        axiosPublic.post('/jwt', userInfo)
+        .then(res =>{
+          if(res.data.token){
+              localStorage.setItem('access-token', res.data.token);
+              setLoading(false);
+
+          }
+      })
+        
+      }else{
+        localStorage.removeItem('access-token');
+        setLoading(false);
       }
-      setLoading(false)
+      
     })
     return () => {
       return unsubscribe()
     }
-  }, [])
+  }, [axiosPublic])
 
   const authInfo = {
     user,
