@@ -1,16 +1,16 @@
 
 import Chart from 'react-google-charts';
-import useAxiosPublic from './../../../Hooks/useAxiosPublic';
 import { useQuery } from '@tanstack/react-query';
+import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 
 const Charts = () => {
-    const axiosPublic = useAxiosPublic();
+    const axiosSecure = useAxiosSecure();
 
     // Fetch articles data
     const { data: articles = [] } = useQuery({
       queryKey: ['articles'],
       queryFn: async () => {
-        const res = await axiosPublic.get('/articles');
+        const res = await axiosSecure.get('/articles');
         return res.data;
       }
     });

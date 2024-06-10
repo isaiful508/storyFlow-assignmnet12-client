@@ -3,8 +3,8 @@ import useAuth from "../../Hooks/useAuth";
 import toast from "react-hot-toast";
 import SocialLogin from "./SocialLogin";
 import { useState } from "react";
-import axios from "axios";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
+
 
 
 const Login = () => {

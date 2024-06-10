@@ -1,10 +1,10 @@
 import toast from "react-hot-toast";
-import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import { imageUpload } from "../../../utils";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 
 const AddPublisher = () => {
-    const axiosPublic =useAxiosPublic();
+    const axiosSecure =useAxiosSecure();
 
     const handlePublisher = async (e) => {
         e.preventDefault();
@@ -24,7 +24,7 @@ const AddPublisher = () => {
                 logo: image_url
             };
 
-            const res = await axiosPublic.post('/publishers', publisherInfo);
+            const res = await axiosSecure.post('/publishers', publisherInfo);
             // console.log(res.data);
             if(res.data.insertedId){
                 toast.success("Added Publisher Successfully");

@@ -1,15 +1,15 @@
 import { useState } from "react";
-import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
 import Select from 'react-select';
 import { imageUpload } from "../../utils";
 import toast from "react-hot-toast";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 
 const AddArticles = () => {
-    const axiosPublic = useAxiosPublic();
+    const axiosSecure = useAxiosSecure();
     const {user} = useAuth();
 
     const [selectedTags, setSelectedTags] = useState([]);
@@ -18,7 +18,7 @@ const AddArticles = () => {
     const { data: publishers = [] } = useQuery({
         queryKey: ['publishers'],
         queryFn: async () => {
-            const res = await axiosPublic.get('/publishers');
+            const res = await axiosSecure.get('/publishers');
 
             return res.data;
         }
@@ -49,7 +49,7 @@ const AddArticles = () => {
         try {
 
              // Check if user can add an article
-             const { data: canAddArticle } = await axiosPublic.get(`/can-add-article/${user?.email}`);
+             const { data: canAddArticle } = await axiosSecure.get(`/can-add-article/${user?.email}`);
 
              if (!canAddArticle.allowed) {
                 Swal.fire({
@@ -79,7 +79,7 @@ const AddArticles = () => {
                 status: 'pending',
                 isPremium: 'no'
             }
-            axiosPublic.post('/articles', articles)
+            axiosSecure.post('/articles', articles)
            .then((res )=>{
             // console.log(res.data);
             if(res.data.insertedId){

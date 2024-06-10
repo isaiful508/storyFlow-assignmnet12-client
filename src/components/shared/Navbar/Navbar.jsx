@@ -3,16 +3,16 @@ import { Link, NavLink } from "react-router-dom";
 import useAuth from './../../../Hooks/useAuth';
 import { AiOutlineMenu } from "react-icons/ai";
 import UseAdmin from "../../../Hooks/UseAdmin";
-import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
 import LoadingSpinner from "../../LoadingSpinner/LoadingSpinner";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
   const [isAdmin] = UseAdmin();
-  const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
   const [isOpen, setIsOpen] = useState(false)
   const [isOpen2, setIsOpen2] = useState(false);
   const [userData, setUserData] = useState(null);
@@ -21,7 +21,7 @@ const Navbar = () => {
   const { data: users = [], isLoading, refetch } = useQuery({
     queryKey: ['users'],
     queryFn: async () => {
-      const res = await axiosPublic.get('/users');
+      const res = await axiosSecure.get('/users');
       return res.data;
     }
 

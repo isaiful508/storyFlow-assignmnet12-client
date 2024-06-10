@@ -1,20 +1,20 @@
 import { useParams } from "react-router-dom";
-import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 import { useEffect } from "react";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 
 
 
 const UserArticleDetails = () => {
     const { id } = useParams();
-    const axiosPublic = useAxiosPublic();
+    const axiosSecure = useAxiosSecure();
 
     const { data: article, isLoading } = useQuery({
         queryKey: ['article', id],
         queryFn: async () => {
-            const res = await axiosPublic.get(`/articles/${id}`);
+            const res = await axiosSecure.get(`/articles/${id}`);
             return res.data;
         }
     });
@@ -23,14 +23,14 @@ const UserArticleDetails = () => {
     useEffect(() => {
         const incrementViewCount = async () => {
             try {
-                await axiosPublic.patch(`/articles/${id}/view`);
+                await axiosSecure.patch(`/articles/${id}/view`);
             } catch (error) {
                 console.error('Error incrementing view count:', error);
             }
         };
         incrementViewCount();
         // console.log(incrementViewCount);
-    }, [id,axiosPublic]);
+    }, [id,axiosSecure]);
 
 
     //loading spinner set

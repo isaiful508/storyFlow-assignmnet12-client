@@ -3,6 +3,7 @@ import toast from "react-hot-toast";
 import { FaUsers } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 
 const AllUsers = () => {
@@ -28,13 +29,53 @@ const AllUsers = () => {
             })
     }
 
-
+    //handle delete users
+    const handleDeleteUser = async (user) => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#5f59f7",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                try {
+                    const res = await axiosSecure.delete(`/users/${user._id}`);
+                    if (res.data.deletedCount > 0) {
+                        Swal.fire({
+                            title: "Deleted!",
+                            text: `${user.name}has been deleted.`,
+                            icon: "success"
+                        });
+                        refetch();
+                    } else {
+                        Swal.fire({
+                            title: "Failed!",
+                            text: "Failed to delete article.",
+                            icon: "error"
+                        });
+                    }
+                } catch (error) {
+                    console.error('Error deleting article:', error);
+                    Swal.fire({
+                        title: "Error!",
+                        text: "Error deleting article.",
+                        icon: "error"
+                    });
+                }
+            }
+        });
+    };
 
 
     return (
         <div>
-            <div className="flex  gap-4 cinzel-700">
-                <h2 className="text-4xl">Total Users : {users.length}</h2>
+            <div className="flex  gap-4">
+               <div className="mx-auto mt-10">
+               <h2 className="text-4xl noto-700">Total Users : {users.length}</h2>
+               </div>
 
 
             </div>
@@ -82,7 +123,7 @@ const AllUsers = () => {
                                 </td>
 
                                 <th>
-                                    <button className="btn btn-ghost btn-xs"> <MdDelete className="text-xl text-red-600" /></button>
+                                    <button onClick={()=> handleDeleteUser(user)} className="btn btn-ghost btn-xs"> <MdDelete className="text-xl text-red-600" /></button>
                                 </th>
 
                             </tr>)

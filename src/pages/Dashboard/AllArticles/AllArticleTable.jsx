@@ -1,15 +1,15 @@
 /* eslint-disable react/prop-types */
-import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import { MdDelete } from "react-icons/md";
 import { FcAcceptDatabase } from "react-icons/fc";
 import toast from "react-hot-toast";
 import { useState } from "react";
 import { Modal } from "flowbite-react";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 
 const AllArticleTable = ({article, idx, refetch}) => {
-    const axiosPublic = useAxiosPublic();
+    const axiosSecure = useAxiosSecure();
     const [openModal, setOpenModal] = useState(false);
    
    
@@ -30,7 +30,7 @@ const AllArticleTable = ({article, idx, refetch}) => {
     const handleApproveArticle = async (article) => {
         // console.log(article)
         try {
-            const res = await axiosPublic.patch(`/articles/${article._id}/status`, { status: 'approved' });
+            const res = await axiosSecure.patch(`/articles/${article._id}/status`, { status: 'approved' });
             if (res.data.modifiedCount > 0) {
                 toast.success("Article approved successfully");
                 refetch();
@@ -47,7 +47,7 @@ const AllArticleTable = ({article, idx, refetch}) => {
     //article premium updater
     const handleMakePremium = async (article) => {
         try {
-            const res = await axiosPublic.patch(`/articles/${article._id}/premium`, { isPremium: 'yes' });
+            const res = await axiosSecure.patch(`/articles/${article._id}/premium`, { isPremium: 'yes' });
             if (res.data.modifiedCount > 0) {
                 toast.success("Article marked as premium successfully");
                 refetch();
@@ -73,7 +73,7 @@ const AllArticleTable = ({article, idx, refetch}) => {
         }).then(async (result) => {
             if (result.isConfirmed) {
                 try {
-                    const res = await axiosPublic.delete(`/articles/${article._id}`);
+                    const res = await axiosSecure.delete(`/articles/${article._id}`);
                     if (res.data.deletedCount > 0) {
                         Swal.fire({
                             title: "Deleted!",
@@ -102,7 +102,6 @@ const AllArticleTable = ({article, idx, refetch}) => {
 
 
 
-
     const sliceTitle = (text) => {
         return text.split(' ').slice(0, 3).join(' ');
     };
@@ -118,7 +117,7 @@ const AllArticleTable = ({article, idx, refetch}) => {
        
 
         try {
-            const res = await axiosPublic.patch(`/articles/${_id}/declinedStatus`, { status: 'declined', declinedReason: reason });
+            const res = await axiosSecure.patch(`/articles/${_id}/declinedStatus`, { status: 'declined', declinedReason: reason });
             if (res.data.modifiedCount > 0) {
                 
                 toast.success("Article declined successfully");

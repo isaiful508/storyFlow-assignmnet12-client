@@ -1,10 +1,11 @@
+/* eslint-disable react/prop-types */
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useEffect, useState } from "react";
-import useAxiosPublic from './../../../Hooks/useAxiosPublic';
 import useAuth from './../../../Hooks/useAuth';
 import { formatISO } from 'date-fns';
 
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 
 
 const CheckoutForm = ({totalPrice}) => {
@@ -13,18 +14,18 @@ const CheckoutForm = ({totalPrice}) => {
     const [transId, setTransId] = useState('')
     const stripe = useStripe();
     const elements = useElements();
-    const axiosPublic= useAxiosPublic();
+    const axiosSecure= useAxiosSecure();
     const {user} =  useAuth();
     console.log(totalPrice);
     
 
     useEffect(() =>{
-        axiosPublic.post('/create-payment-intent', {price: totalPrice})
+        axiosSecure.post('/create-payment-intent', {price: totalPrice})
         .then((res)=>{
             console.log(res.data.clientSecret);
             setClientSecret(res.data.clientSecret);
         })
-    },[axiosPublic,totalPrice])
+    },[axiosSecure,totalPrice])
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -79,7 +80,7 @@ const CheckoutForm = ({totalPrice}) => {
                   });
                 setTransId(paymentIntent.id);
                   // Update user's premiumTaken field
-                  axiosPublic.put(`/users/${user?.email}/premium`, { premiumTaken: formatISO(new Date()) })
+                  axiosSecure.put(`/users/${user?.email}/premium`, { premiumTaken: formatISO(new Date()) })
                   .then(res => {
                       console.log('User premium status updated', res.data);
                       window.location.reload()

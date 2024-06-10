@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
-import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 import PublisherCard from "./PublisherCard";
+import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 
 
 const AllPublishers = () => {

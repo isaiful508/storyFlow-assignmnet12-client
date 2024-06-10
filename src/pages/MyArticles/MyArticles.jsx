@@ -1,13 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
-import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import useAuth from "../../Hooks/useAuth";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 import MyArticlesTable from "./MyArticlesTable";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 
 
 const MyArticles = () => {
-    const axiosPublic = useAxiosPublic();
+    const axiosSecure = useAxiosSecure();
     const {user} = useAuth();
     
     
@@ -15,7 +15,7 @@ const MyArticles = () => {
     const { data: articles = [], refetch, isLoading } = useQuery({
         queryKey: ['articles'],
         queryFn: async () => {
-            const res = await axiosPublic.get(`/articles/user/${user?.email}`);
+            const res = await axiosSecure.get(`/articles/user/${user?.email}`);
 
             return res.data;
         }

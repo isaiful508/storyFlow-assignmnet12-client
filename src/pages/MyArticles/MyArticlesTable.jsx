@@ -11,6 +11,7 @@ import Select from 'react-select';
 import { useQuery } from '@tanstack/react-query';
 import { imageUpload } from '../../utils';
 import toast from 'react-hot-toast';
+import useAxiosSecure from '../../Hooks/useAxiosSecure';
 
 const MyArticlesTable = ({ article, idx, refetch }) => {
     const { title,
@@ -27,7 +28,7 @@ const MyArticlesTable = ({ article, idx, refetch }) => {
     const [openModal2, setOpenModal2] = useState(false);
     const [selectedTags, setSelectedTags] = useState([]);
 
-    const axiosPublic = useAxiosPublic();
+    const axiosSecure = useAxiosSecure();
 
     //delete article 
     const handleDeleteArticle = async (_id) => {
@@ -42,7 +43,7 @@ const MyArticlesTable = ({ article, idx, refetch }) => {
         }).then(async (result) => {
             if (result.isConfirmed) {
                 try {
-                    const res = await axiosPublic.delete(`/articles/${_id}`);
+                    const res = await axiosSecure.delete(`/articles/${_id}`);
                     if (res.data.deletedCount > 0) {
                         Swal.fire({
                             title: "Deleted!",
@@ -78,7 +79,7 @@ const MyArticlesTable = ({ article, idx, refetch }) => {
     const { data: publishers = [] } = useQuery({
         queryKey: ['publishers'],
         queryFn: async () => {
-            const res = await axiosPublic.get('/publishers');
+            const res = await axiosSecure.get('/publishers');
 
             return res.data;
         }
@@ -112,7 +113,7 @@ const MyArticlesTable = ({ article, idx, refetch }) => {
 
         
        
-            const res = await axiosPublic.patch(`/articles/${_id}/update`, { title: title,
+            const res = await axiosSecure.patch(`/articles/${_id}/update`, { title: title,
                 description: description,
                 publisher: publisher,
                 tags: tags,

@@ -1,13 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
-import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import UserArticleCard from "./UserArticleCard";
 import Select from 'react-select';
 import { useEffect, useState } from "react";
 import useAuth from './../../Hooks/useAuth';
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 
 const UserAllArticles = () => {
-    const axiosPublic = useAxiosPublic();
+    const axiosSecure = useAxiosSecure();
     const [searchTerm, setSearchTerm] = useState('');
     const [selectedPublisher, setSelectedPublisher] = useState('');
     const [selectedTags, setSelectedTags] = useState([]);
@@ -19,7 +19,7 @@ const UserAllArticles = () => {
     const { data: approvedArticles = [] } = useQuery({
         queryKey: ['approvedArticles'],
         queryFn: async () => {
-            const res = await axiosPublic.get('/articles/status/approved');
+            const res = await axiosSecure.get('/articles/status/approved');
             return res.data;
         }
     });
@@ -29,7 +29,7 @@ const UserAllArticles = () => {
     const { data: publishers = [] } = useQuery({
         queryKey: ['publishers'],
         queryFn: async () => {
-            const res = await axiosPublic.get('/publishers');
+            const res = await axiosSecure.get('/publishers');
             return res.data;
         }
     });
@@ -46,7 +46,7 @@ const UserAllArticles = () => {
     const { data: filteredPublisher = [] } = useQuery({
         queryKey: ['filteredPublisher', selectedPublisher],
         queryFn: async () => {
-            const res = await axiosPublic.get(`/articles/publisher/${selectedPublisher}`);
+            const res = await axiosSecure.get(`/articles/publisher/${selectedPublisher}`);
             return res.data;
         },
         enabled: !!selectedPublisher, 
@@ -88,7 +88,7 @@ const UserAllArticles = () => {
     const { data: users = [] } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
-            const res = await axiosPublic.get('/users');
+            const res = await axiosSecure.get('/users');
 
             return res.data ;
         },
