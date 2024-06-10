@@ -1,16 +1,16 @@
 import { useQuery } from '@tanstack/react-query';
 import CountUp from 'react-countup';
 import LoadingSpinner from '../../LoadingSpinner/LoadingSpinner';
-import useAxiosSecure from '../../../Hooks/useAxiosSecure';
+import useAxiosPublic from '../../../Hooks/useAxiosPublic';
 
 
 
 const Statistic = () => {
-    const axiosSecure = useAxiosSecure()
+    const axiosPublic = useAxiosPublic()
     const { data: AllUsers = [],isLoading } = useQuery({
         queryKey: ['AllUsers'],
         queryFn: async () => {
-            const res = await axiosSecure.get('/users');
+            const res = await axiosPublic.get('/users');
 
             return res.data;
         }
