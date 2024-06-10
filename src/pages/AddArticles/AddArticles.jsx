@@ -13,6 +13,7 @@ const AddArticles = () => {
     const {user} = useAuth();
 
     const [selectedTags, setSelectedTags] = useState([]);
+    const [isLoading, setIsLoading] = useState(false); 
 
 //publisher data fetch
     const { data: publishers = [] } = useQuery({

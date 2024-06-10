@@ -63,8 +63,8 @@ const Charts = () => {
           data={barChartData}
           options={{
             title: 'Articles by Publisher',
-            hAxis: { title: 'Publisher', minValue: 0 },
-            vAxis: { title: 'Articles' },
+            vAxis: { title: 'Publisher', minValue: 0 },
+            hAxis: { title: 'Articles' },
           }}
           width="100%"
           height="400px"

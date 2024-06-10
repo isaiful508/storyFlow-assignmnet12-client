@@ -29,7 +29,10 @@ const Statistic = () => {
    
     return (
        <div>
-         <div className="mt-20 text-center  w-full">
+        <div className='mt-20'>
+            <h2 className='lg:text-4xl text-2xl text-center noto-700'>All Types of Users</h2>
+        </div>
+         <div className="mt-10 text-center  w-full">
         <div className="stats stats-vertical lg:stats-horizontal shadow-lg w-full">
 
             <div className="stat">

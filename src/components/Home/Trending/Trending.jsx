@@ -9,7 +9,7 @@ import 'swiper/css/pagination';
 
 
 // import required modules
-import { Pagination } from 'swiper/modules';
+import { Pagination, Autoplay } from 'swiper/modules';
 import { Link } from "react-router-dom";
 
 const Trending = () => {
@@ -44,7 +44,12 @@ const Trending = () => {
 
             <Swiper
                 pagination={pagination}
-                modules={[Pagination]}
+                modules={[Pagination, Autoplay]}
+                 
+                autoplay={{
+                    delay: 2000, 
+                    disableOnInteraction: false, 
+                }}
                 className="mySwiper"
 
             >

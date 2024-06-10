@@ -25,7 +25,7 @@ const SocialLogin = () => {
 
             axiosPublic.post('/users', userInfo)
                 .then((res) => {
-                    console.log(res.data);
+                    // console.log(res.data);
                     
                     navigate(from, {replace: true});
                     toast.success("Login Successfully");
@@ -35,7 +35,7 @@ const SocialLogin = () => {
                 axiosPublic.post('/login', { email: userInfo.email })
                     .then((res) => {
                         const user = res.data;
-                        console.log('Logged in user:', user);
+                        // console.log('Logged in user:', user);
 
                         navigate(from, { replace: true });
                         

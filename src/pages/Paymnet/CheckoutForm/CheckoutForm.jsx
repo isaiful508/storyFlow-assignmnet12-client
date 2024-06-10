@@ -16,13 +16,13 @@ const CheckoutForm = ({totalPrice}) => {
     const elements = useElements();
     const axiosSecure= useAxiosSecure();
     const {user} =  useAuth();
-    console.log(totalPrice);
+    // console.log(totalPrice);
     
 
     useEffect(() =>{
         axiosSecure.post('/create-payment-intent', {price: totalPrice})
         .then((res)=>{
-            console.log(res.data.clientSecret);
+            // console.log(res.data.clientSecret);
             setClientSecret(res.data.clientSecret);
         })
     },[axiosSecure,totalPrice])
@@ -46,11 +46,11 @@ const CheckoutForm = ({totalPrice}) => {
         })
 
         if (error) {
-            console.log('payment error', error);
+            // console.log('payment error', error);
             setError(error.message);
         }
         else {
-            console.log('payment method', paymentMethod);
+            // console.log('payment method', paymentMethod);
             setError('')
         }
 
@@ -66,11 +66,11 @@ const CheckoutForm = ({totalPrice}) => {
             }
         })
         if(confirmError){
-            console.log('confirm error', confirmError)
+            // console.log('confirm error', confirmError)
         }else{
-            console.log('payment intent ', paymentIntent)
+            // console.log('payment intent ', paymentIntent)
             if(paymentIntent.status === 'succeeded'){
-                console.log('transactionId', paymentIntent.id)
+                // console.log('transactionId', paymentIntent.id)
                 Swal.fire({
                     position: "top-center",
                     icon: "success",
@@ -82,7 +82,7 @@ const CheckoutForm = ({totalPrice}) => {
                   // Update user's premiumTaken field
                   axiosSecure.put(`/users/${user?.email}/premium`, { premiumTaken: formatISO(new Date()) })
                   .then(res => {
-                      console.log('User premium status updated', res.data);
+                    //   console.log('User premium status updated', res.data);
                       window.location.reload()
                   })
                   .catch(err => {

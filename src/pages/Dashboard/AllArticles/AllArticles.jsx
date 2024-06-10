@@ -1,10 +1,15 @@
 import { useQuery } from "@tanstack/react-query";
 import AllArticleTable from "./AllArticleTable";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
+import { useState } from "react";
+import Pagination from "../../../components/Pagination/Pagination";
+
 
 
 const AllArticles = () => {
     const axiosSecure = useAxiosSecure();
+    const [currentPage, setCurrentPage] = useState(1);
+    const articlesPerPage = 5;
 
     //fetch all articles data
     const { data: articles = [], refetch } = useQuery({
@@ -15,6 +20,18 @@ const AllArticles = () => {
             return res.data;
         }
     })
+
+     // Pagination logic
+     const indexOfLastArticle = currentPage * articlesPerPage;
+     const indexOfFirstArticle = indexOfLastArticle - articlesPerPage;
+     const currentArticles = articles.slice(indexOfFirstArticle, indexOfLastArticle);
+     const totalPages = Math.ceil(articles.length / articlesPerPage);
+ 
+     const handlePageChange = (page) => {
+         setCurrentPage(page);
+     };
+
+
 
     return (
         <div>
@@ -49,11 +66,11 @@ const AllArticles = () => {
                     <tbody className="noto-500">
 
                         {
-                            articles.map((article, idx) => <AllArticleTable
+                            currentArticles.map((article, idx) => <AllArticleTable
                                 article={article}
                                 key={article._id}
                                 refetch={refetch}
-                                idx={idx}
+                                idx={indexOfFirstArticle + idx}
                             ></AllArticleTable>)
                         }
 
@@ -64,7 +81,11 @@ const AllArticles = () => {
                 </table>
 
             </div>
-
+            <Pagination
+                currentPage={currentPage}
+                totalPages={totalPages}
+                onPageChange={handlePageChange}
+            />
 
         </div>
     );

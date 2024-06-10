@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 const Plans = () => {
     return (
         <div className="bg-white mt-20 dark:bg-gray-900">
+            <h2 className='text-center lg:text-4xl text-2xl noto-700'>Choose Yours Plan</h2>
             <div className="container px-6 py-8 mx-auto">
                 <div className="flex flex-col items-center justify-center space-y-8 lg:-mx-4 lg:flex-row lg:items-stretch lg:space-y-0">
                     <div className="flex flex-col w-full max-w-sm p-8 space-y-8 text-center bg-white border-2 border-gray-200 rounded-lg lg:mx-4 dark:bg-gray-900 dark:border-gray-700">

@@ -4,10 +4,16 @@ import { FaUsers } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import { useState } from "react";
+import Pagination from "../../../components/Pagination/Pagination";
 
 
 const AllUsers = () => {
-    const axiosSecure = useAxiosSecure()
+    const axiosSecure = useAxiosSecure();
+    const [currentPage, setCurrentPage] = useState(1);
+    const usersPerPage = 5;
+
+
     const { data: users = [], refetch } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
@@ -16,6 +22,22 @@ const AllUsers = () => {
         }
     })
     // console.log(users);
+
+ // Pagination logic
+ const indexOfLastUser = currentPage * usersPerPage;
+ const indexOfFirstUser = indexOfLastUser - usersPerPage;
+ const currentUsers = users.slice(indexOfFirstUser, indexOfLastUser);
+ const totalPages = Math.ceil(users.length / usersPerPage);
+
+ const handlePageChange = (page) => {
+     setCurrentPage(page);
+ };
+
+
+
+
+
+
 
     //make admin a user
     const handleMakeAdmin = user => {
@@ -74,7 +96,7 @@ const AllUsers = () => {
         <div>
             <div className="flex  gap-4">
                <div className="mx-auto mt-10">
-               <h2 className="text-4xl noto-700">Total Users : {users.length}</h2>
+               <h2 className="lg:text-4xl text-2xl noto-700">Total Users : {users.length}</h2>
                </div>
 
 
@@ -99,12 +121,12 @@ const AllUsers = () => {
                     <tbody className="noto-500">
 
                         {
-                            users.map((user, idx) => <tr
+                            currentUsers.map((user, idx) => <tr
                                 key={user._id}
                             >
 
                                 <td>
-                                    {idx + 1}
+                                    {idx + 1 + indexOfFirstUser}
                                 </td>
 
                                 <td>
@@ -135,6 +157,13 @@ const AllUsers = () => {
 
                 </table>
             </div>
+            <Pagination
+                currentPage={currentPage}
+                totalPages={totalPages}
+                onPageChange={handlePageChange}
+            />
+
+
         </div>
     );
 };

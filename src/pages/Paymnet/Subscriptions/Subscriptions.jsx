@@ -33,7 +33,7 @@ const Subscriptions = () => {
         // Calculate the total price
         const totalPrice = periodValue ? (priceNumber * periodValue).toFixed(2) : 0;
         setTotalPrice(totalPrice);
-        console.log(totalPrice);
+        // console.log(totalPrice);
 
 
         navigate(`/payment/${totalPrice}`);

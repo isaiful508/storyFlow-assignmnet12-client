@@ -36,10 +36,10 @@ const UserArticleCard = ({ article, users, currentUser }) => {
       <div className="card-body">
         <h2 className="card-title noto-700">{title}</h2>
         <p className="noto-600">{sliceDescription(description)} . . .</p>
-        <p className="font-semibold">Publisher: {publisher}</p>
-        <div className="tags flex flex-wrap items-center gap-5 justify-between">
+        <p className="noto-700">Publisher: <span className="noto-600">{publisher}</span></p>
+        <div className="tags flex flex-wrap items-center gap-5 justify-between noto-600">
           {tags.map((tag, index) => (
-            <span key={index} className="badge p-4 bg-green-400 text-white m-1"># {tag}</span>
+            <span key={index} className="badge p-4 bg-green-600 text-white m-1"># {tag}</span>
           ))}
 
         </div>

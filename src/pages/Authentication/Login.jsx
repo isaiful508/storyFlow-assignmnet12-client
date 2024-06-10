@@ -27,13 +27,13 @@ const Login = () => {
             await logIn(email, password);
             const res = await axiosPublic.post('/login', { email, password });
             const user = res.data;
-            console.log(user)
+            // console.log(user)
 
             toast.success("Login Successfully");
             navigate(from, { replace: true });
 
         } catch (error) {
-            console.log(error);
+            // console.log(error);
             if (error.code === "auth/invalid-credential" || error.code === "auth/user-not-found") {
                 // Show error message for incorrect email or password
                 setLoginError("Incorrect email or password. Please try again.");
