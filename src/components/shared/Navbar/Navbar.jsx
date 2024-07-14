@@ -4,9 +4,8 @@ import useAuth from './../../../Hooks/useAuth';
 import { AiOutlineMenu } from "react-icons/ai";
 import UseAdmin from "../../../Hooks/UseAdmin";
 import { useQuery } from "@tanstack/react-query";
-import LoadingSpinner from "../../LoadingSpinner/LoadingSpinner";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
-
+import logo from '../../../assets/logo.png'
 
 
 const Navbar = () => {
@@ -18,7 +17,7 @@ const Navbar = () => {
   const [userData, setUserData] = useState(null);
 
   // Fetch user data
-  const { data: users = [], isLoading, refetch } = useQuery({
+  const { data: users = [],refetch } = useQuery({
     queryKey: ['users'],
     queryFn: async () => {
       const res = await axiosSecure.get('/users');
@@ -58,12 +57,9 @@ const Navbar = () => {
   );
 
 
-  if (isLoading) {
-    return <LoadingSpinner></LoadingSpinner>;
-}
 
   return (
-    <div className="navbar fixed bg-opacity z-10 text-center  lg:text-white bg-[#15151580]">
+    <div className="navbar fixed bg-opacity z-10 text-center text-[#7b7b7b] bg-[#f6f6f6]">
       <div className="navbar-start">
         <div className="dropdown">
           <div onClick={() => setIsOpen2(!isOpen2)} tabIndex={0} role="button" className="btn btn-ghost lg:hidden text-white">
@@ -77,7 +73,8 @@ const Navbar = () => {
 
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl text-white">Story Flow</a>
+        {/* <a className="btn btn-ghost text-xl text-[#7b7b7b]">Story Flow</a> */}
+        <img className="h-10" src={logo} alt="" />
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal flex items-center justify-between noto-700 px-1 space-x-3">
@@ -93,7 +90,7 @@ const Navbar = () => {
           onClick={() => setIsOpen(!isOpen)}
           className='p-4 md:py-1 md:px-2 border-[1px] border-neutral-200 flex flex-row items-center gap-3 rounded-full cursor-pointer hover:shadow-md transition'
         >
-          <AiOutlineMenu className="text-white" />
+          <AiOutlineMenu className="text-[#7b7b7b]" />
           <div className='hidden md:block'>
             {/* Avatar */}
             <img
@@ -107,7 +104,7 @@ const Navbar = () => {
           </div>
         </div>
         {isOpen && (
-          <div className='absolute rounded-xl shadow-md w-[40vw] md:w-[10vw] bg-[#15151580] overflow-hidden right-0 top-12 text-sm text-white hover:text-black'>
+          <div className='absolute rounded-xl shadow-md w-[40vw] md:w-[10vw] bg-[#f6f6f6] overflow-hidden right-0 top-12 text-sm text-[#7b7b7b] hover:text-black'>
             <div className='flex flex-col cursor-pointer'>
               <Link
                 to='/'

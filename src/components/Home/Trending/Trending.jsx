@@ -1,19 +1,20 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
-import LoadingSpinner from "../../LoadingSpinner/LoadingSpinner";
 import { Swiper, SwiperSlide } from 'swiper/react';
+import Button from "../../Button/Button";
 
-// Import Swiper styles
+// Import Swiper credentials
+import { Pagination, Autoplay, Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
+import 'swiper/css/navigation';
 
 
-// import required modules
-import { Pagination, Autoplay } from 'swiper/modules';
-import { Link } from "react-router-dom";
 
 const Trending = () => {
+
     const axiosPublic = useAxiosPublic();
+    // swipper pagination
     const pagination = {
         clickable: true,
         renderBullet: function (index, className) {
@@ -22,8 +23,7 @@ const Trending = () => {
     };
 
     //fetch trendings  articles 6 data by sorting views count
-
-    const { data: trendingArticles = [], isLoading } = useQuery({
+    const { data: trendingArticles = [] } = useQuery({
         queryKey: ['trendingArticles'],
         queryFn: async () => {
             const res = await axiosPublic.get('/trending-articles');
@@ -32,68 +32,59 @@ const Trending = () => {
         }
     })
 
-    if (isLoading) {
-        return <LoadingSpinner></LoadingSpinner>
-    }
     // console.log(trendingArticles);
 
+    // posted date format 
+    const formatDate = (dateString) => {
+        const options = { day: 'numeric', month: 'long', year: 'numeric' };
+        const date = new Date(dateString);
+        return date.toLocaleDateString('en-GB', options);
+    }
 
     return (
         <div>
-
+            
+            <h2 className="text-black flex justify-center items-center py-16 text-3xl font-semibold noto-500">Trending News Articles</h2>
 
             <Swiper
                 pagination={pagination}
-                modules={[Pagination, Autoplay]}
-                 
+                modules={[Pagination, Autoplay, Navigation]}
+                navigation={true}
+
                 autoplay={{
-                    delay: 2000, 
-                    disableOnInteraction: false, 
+                    delay: 2000,
+                    disableOnInteraction: false,
                 }}
-                className="mySwiper"
+                className="mySwiper">
 
-            >
-                {
-                    trendingArticles.map(article => <SwiperSlide
+                {trendingArticles.map(article =>
+                    <SwiperSlide
                         key={article._id}
-                        article={article}
-                    >
-                        {/* <div className="hero min-h-screen" style={{ backgroundImage: `url(${article.image})` }}>
-                            <div className="hero-overlay bg-opacity-20"></div>
-                            <div className="hero-content text-center text-neutral-content">
-                                <div className="max-w-2xl">
-                                    <h1 className="mb-5 text-5xl noto-700 text-white">{article.title}</h1>
-                                    
-                                    <Link to='/userAllArticles' className="btn mt-5 hover:bg-[#5f59f7] text-white bg-[#343090]">Explore More</Link>
+                        article={article}>
+
+                        <section className="bg-white dark:bg-gray-900">
+                            <div className="container flex flex-col-reverse px- mx-auto text-center">
+
+                                <div className="max-w-lg mx-auto">
+
+                                    <h1 className="text-3xl font-semibold text-gray-800 dark:text-white lg:text-4xl mt-8">{article.title}</h1>
+                                    <p className="poppins-400 text-black font-medium">{formatDate(article.postedDate)}</p>
+                                    <Button to="/userAllArticles">Explore More</Button>
+
                                 </div>
-                            </div>
-                        </div>  */}
 
-                        <div>
-
-
-                            <div
-                                className="w-full bg-center bg-cover h-[38rem]"
-                                style={{
-                                    backgroundImage:
-                                        `url(${article.image})`,
-                                }}
-                            >
-                                <div className="flex items-center justify-center w-full h-full bg-gray-900/40">
-                                    <div className="text-center ">
-                                        <h1 className="text-3xl font-semibold text-white lg:text-5xl noto-700">
-                                            {article.title}
-                                        </h1>
-                                        <Link to='/userAllArticles' className="btn mt-5 hover:bg-[#5f59f7] text-white noto-500 bg-[#343090] outline-none">Explore More</Link>
-                                    </div>
+                                <div className="flex justify-center mt-10">
+                                    <img className="object-cover w-full h-96 rounded-xl lg:w-4/5" src={article.image} alt="news_article" />
                                 </div>
+
                             </div>
-                        </div>
+
+                        </section>
+
                     </SwiperSlide>)
                 }
 
             </Swiper>
-
         </div>
     );
 };
